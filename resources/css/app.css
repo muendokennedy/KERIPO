@@ -1,3 +1,498 @@
+/* Importing the poppins google font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+/* The variables */
+/* The colors */
+:root{
+  --primary: #2DE19D;
+  --primary-hover: #15f49f;
+  --primary-text-color: #000;
+  --footer-background-color: #DAF8F3;
+  --contact-form-background-color: #E8E8E8;
+  --form-input-border-bottom-color: #707070;
+}
+section{
+  padding: 2rem 5%;
+  font-size: 1.4rem;
+}
+html{
+  font-size: 62.5%;
+}
+.btn{
+  display: block;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  background: var(--primary);
+  border-radius: 2.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 1.6rem;
+  text-transform: capitalize;
+  color: var(--primary-text-color);
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+.btn:hover{
+  background: var(--primary-hover);
+}
+/* The navigation bar */
+header{
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--primary);
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.6rem;
+  padding: 0 2%;
+  align-items: center;
+  z-index: 100;
+}
+header .logo-area .nav-logo{
+  height: 3rem;
+  width: 3rem;
+}
+header .logo-area .nav-title{
+  font-weight: 500;
+  font-size: 1.8rem;
+  text-transform: capitalize;
+}
+header .logo-area{
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+header .logo-area .nav-logo img{
+  height: 100%;
+  width: 100%;
+}
+nav{
+  display: flex;
+  gap: 2rem;
+  position: relative;
+  align-items: center;
+}
+nav a{
+  text-decoration: none;
+  color: var(--primary-text-color);
+  font-size: 1.6rem;
+  padding: 1.5rem 0;
+}
+nav .link-container{
+  position: relative;
+}
+nav .link-container .links{
+  display: none;
+  width: 15rem;
+  position: absolute;
+  top: 160%;
+  background: var(--primary);
+}
+nav .link-container .links a{
+  display: block;
+  padding: 1rem;
+}
+nav .link-container:hover > .links{
+  display: block;
+}
+nav .links:hover{
+  display: block;
+}
+.home .home-title{
+  font-size: 1.8rem;
+  padding: 2rem 0;
+  font-weight: 600;
+}
+.home .welcome-section{
+  align-items: center;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+.home .welcome-section .signup-login{
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  gap: 3rem;
+  width: 20%;
+}
+.home .welcome-section .signup-login a,
+.home .welcome-section .signup-login button{
+  padding: 1rem 2.5rem;
+}
+.home .home-property-box{
+  margin: 4rem 0;
+}
+.home .home-property-box-title{
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.home .home-property-box-title span{
+  color: var(--primary);
+}
+.home .home-property-box .property-box{
+  margin: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.home .home-property-box .property-box .property-image{
+  height: 30rem;
+  width: 50rem;
+}
+.home .home-property-box .property-box .property-image img{
+  height: 100%;
+  width: 100%;
+  border-radius: 2.5rem;
+}
+.home .home-property-box .property-box .property-details{
+  width: 60rem;
+}
+.home .home-property-box .property-box .property-details a{
+  width: 15rem;
+  margin: 2rem 0;
+}
+/* The urban page */
+.urban .urban-title{
+  font-size: 1.8rem;
+  padding: 2rem 0;
+  font-weight: 600;
+  border-bottom: .1rem solid #000;
+  width: 20rem;
+}
+.urban .urban-welcome-text{
+  margin: 2rem 0;
+}
+.urban .urban-title span{
+  color: var(--primary);
+}
+table{
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+}
+th{
+  padding: 1.5rem 1.6rem;
+  background: var(--primary);
+  text-align: left;
+  border-top: .1rem solid #000;
+  border-bottom: .1rem solid #000;
+}
+td{
+  padding: 1.5rem 1.6rem;
+}
+.urban .call-to-action{
+  font-size: 1.8rem;
+  padding: 2rem 0;
+  font-weight: 600;
+}
+.urban .btn{
+  margin: 3rem 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  width: 30rem;
+}
+/* The styling of the contact page */
+.contact .contact-title{
+  font-size: 1.8rem;
+  padding: 2rem 0;
+  font-weight: 600;
+  border-bottom: .1rem solid #000;
+  width: 20rem;
+}
+.contact .contact-title span{
+  color: var(--primary);
+}
+.contact .contact-welcome-text{
+  margin: 2rem 0;
+}
+.contact .contact-form-title{
+  font-size: 1.8rem;
+  padding: 2rem 0;
+  font-weight: 600;
+}
+.contact .contact-form{
+  background: var(--contact-form-background-color);
+  padding: 2rem 2%;
+}
+.contact .contact-form .form-row{
+  display: flex;
+  justify-content: space-between;
+  margin: .5rem 0;
+}
+.contact .contact-form .form-row .form-input{
+  width: 45%;
+  display: block;
+  margin: .5rem 0;
+}
+.contact .contact-form .form-row .form-input input,
+.contact .contact-form .form-row .form-input select{
+  padding: 1rem .5rem;
+  outline: none;
+  border: .2rem solid var(--form-input-border-bottom-color);
+  width: 100%;
+  background: var(--contact-form-background-color);
+}
+.contact .contact-form .form-row .form-input input:focus{
+  border-color: var(--primary);
+  transition: all .3s ease-in-out;
+}
+.contact .contact-form .form-row .form-input label{
+ display: block;
+ margin: 1rem 0;
+}
+.contact .contact-form .form-row .textarea{
+  width: 100%;
+}
+.contact .contact-form .form-row .textarea textarea{
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: .2rem solid var(--form-input-border-bottom-color);
+  background: none;
+  resize: none;
+}
+.contact .contact-form .form-row .textarea label{
+  bottom: 90%;
+}
+.contact .contact-form .form-row .textarea textarea:focus ~ label,
+.contact .contact-form .form-row .textarea textarea:valid ~ label{
+  transform: translateY(-7rem);
+  transition: all .3s ease-in-out;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+.contact .submit-btn .btn{
+  width: 20rem;
+  font-weight: 600;
+}
+.map .map-title{
+  font-size: 1.8rem;
+  padding: 2rem 0;
+  font-weight: 600;
+}
+.map .map-title span{
+  color: var(--primary);
+}
+.map iframe{
+  width: 100%;
+  height: 50rem;
+  margin: 2rem 0 4rem 0;
+}
+.contact .contact-form-title span{
+  color: var(--primary);
+}
+/* The information page styling */
+.information .btn{
+  margin: 2rem 0;
+}
+.information .success-text, .information .error-text{
+  padding: 3rem 4rem;
+  background: #6fffc8;;
+  border-radius: 0 2.8rem 2.8rem 2.8rem;
+  margin: 2rem 0;
+}
+.information .error-text{
+  padding: 2rem 2rem;
+  text-align: center;
+  background-color: #f3a0a0;
+}
+/* Styling of the payment page */
+.payment .payment-welcome-text{
+  margin: 0 0 3rem 0;
+}
+/* Styling of the conditions page */
+.conditions .conditions-title{
+  font-size: 1.8rem;
+  padding: 1rem 0;
+  font-weight: 600;
+  border-bottom: .2rem solid var(--contact-form-background-color);
+  width: 30rem;
+  margin: 2rem 0;
+}
+.conditions .conditions-title span{
+  color: var(--primary);
+}
+.conditions .conditions-box{
+  background: var(--contact-form-background-color);
+  padding: 2rem 2%;
+  margin: 3rem 0;
+}
+.conditions .conditions-box-title{
+  font-size: 1.8rem;
+  padding: 1rem 0;
+  font-weight: 600;
+}
+.conditions .conditions-box .condition{
+  position: relative;
+  padding-left: 3rem;
+  line-height: 2;
+}
+.conditions .conditions-box .condition::before{
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: .8rem;
+  height: .8rem;
+  background: #000;
+  border-radius: 50%;
+}
+.conditions .agree-title{
+  font-size: 1.8rem;
+  padding: 1rem 0;
+  font-weight: 600;
+}
+.conditions form .input-box{
+  display: inline-block;
+  margin-right: 4rem;
+}
+.conditions .btn{
+  margin: 2rem 0;
+  display: block;
+  width: 25rem;
+}
+.payment .payment-block .pay-column{
+  margin-top: 2rem;
+}
+/* Creating a signup page */
+.signup .signup-title{
+    font-size: 1.8rem;
+    padding: 2rem 0;
+    font-weight: 600;
+    width: auto;
+  }
+  .signup .signup-title span{
+    color: var(--primary);
+  }
+  .signup .signup-welcome-text{
+    margin: 2rem 0;
+  }
+  .signup .signup-form-title{
+    font-size: 1.8rem;
+    padding: 2rem 0;
+    font-weight: 600;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  .signup-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .signup .signup-form{
+    background: var(--contact-form-background-color);
+    padding: 2rem 2%;
+    width: 50rem;
+    margin: 4rem auto;
+  }
+  .signup .signup-form .form-input{
+    width: 100%;
+    display: block;
+    margin: 1rem 0;
+  }
+  .signup .signup-form .form-input input,
+  .signup .signup-form .form-input select{
+    padding: 1rem .5rem;
+    border: none;
+    outline: none;
+    border: .2rem solid var(--form-input-border-bottom-color);
+    width: 100%;
+    background: var(--contact-form-background-color);
+  }
+  .signup .signup-form .form-input input:focus,
+  .signup .signup-form .form-input select:focus{
+    transition: all .3s ease-in-out;
+    background: var(--contact-form-background-color)
+  }
+  .signup .signup-form .form-input label{
+    display: block;
+    margin: 1rem 0;
+  }
+  .signup .signup-form .form-input input:focus{
+    border-color: var(--primary);
+  }
+  .signup .submit-btn{
+    margin: 2.5rem 0;
+  }
+  .signup .submit-btn .btn{
+    padding: 1rem 3.5rem;
+    width: 100%;
+  }
+  .signup .account-already{
+    margin: 2rem 0;
+    font-size: 1.5rem;
+  }
+  .signup .account-already a{
+    padding: 0 4rem;
+    text-transform: capitalize;
+  }
+  .signup .account-already a:hover{
+    text-decoration: underline;
+    transition: all .3s ease-in-out;
+  }
+/* The footer styling */
+footer{
+  font-size: 1.4rem;
+  background: var(--footer-background-color);
+  padding: 4rem 5%;
+  margin: 5rem 0 0 0;
+}
+footer .footer-info-box{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+}
+footer .link-box a{
+  margin: 1.5rem 0;
+  transition: all .3s ease-in-out;
+}
+footer .link-box a:hover{
+  color: var(--primary);
+}
+footer .link-box a{
+  display: block;
+  color: var(--primary-text-color);
+  text-decoration: none;
+  padding: .5rem 0;
+}
+footer .footer-box-title{
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+footer p{
+  padding: 1.5rem 0;
+}
+footer .social-media-icons{
+  color: var(--primary-text-color);
+  display: flex;
+  margin: 2rem 0;
+  gap: 2rem;
+}
+footer .social-media-icons i{
+  font-size: 1.6rem;
+  transition: all .3s ease-in-out;
+}
+footer .social-media-icons i:hover{
+  color: var(--primary);
+}
+footer .copyright-box{
+  text-align: center;
+  padding: 6rem 0 0 0;
+}
+footer .copyright-box span{
+  color: var(--primary);
+}

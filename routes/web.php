@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Client\PagesController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -23,5 +24,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/', [PagesController::class, 'Home'])->name('home');
+Route::get('/urban/plots', [PagesController::class, 'UrbanPlots'])->name('urban');
+Route::get('/upcountry/plots', [PagesController::class, 'UpcountryPlots'])->name('upcountry');
+Route::get('/buildings/apartments', [PagesController::class, 'Apartments'])->name('apartments');
+Route::get('/buildings/houses', [PagesController::class, 'Houses'])->name('houses');
+Route::get('/contact', [PagesController::class, 'Contact'])->name('contact');
+
 
 require __DIR__.'/auth.php';
