@@ -1,6 +1,11 @@
 <script setup>
 import Header from '@/Components/Header.vue'
 import Footer from '@/Components/Footer.vue'
+import { Link, usePage } from '@inertiajs/vue3'
+
+const authenticatedUser = usePage().props.auth.user
+
+
 
 
 </script>
@@ -9,17 +14,21 @@ import Footer from '@/Components/Footer.vue'
     <Header/>
     <section class="home">
     <div class="welcome-section">
-      <div class="home-title">Welcome
-        <span class="text-[#2DE19D]">Kennedy Muendo</span>
-      </div>
-      <div class="signup-login">
-          <a href="{{route('customer.signup')}}" class="btn">signup</a>
-          <a href="{{route('customer.login')}}" class="btn">login</a>
+        <div v-if="$page.props.auth.user" class="home-title">
+            Hello
+            <span class="text-[#2DE19D]">{{ authenticatedUser.name }}</span>
+            Welcome back
         </div>
-        <div class="signup-login">
-            <form action="{{route('logout')}}" method="POST">
-            <button class="btn">logout</button>
-            </form>
+      <div v-else class="home-title">Welcome to the only
+        <span class="text-[#2DE19D]">authentic</span>
+        realestate portal in Kenya
+      </div>
+      <div v-if="authenticatedUser" class="signup-login">
+          <Link :href="route('logout')" as="button" method="post" class="btn">logout</Link>
+      </div>
+      <div v-else class="signup-login">
+          <Link :href="route('register')" class="btn">signup</Link>
+          <Link :href="route('login')" class="btn">login</Link>
         </div>
     </div>
     <div class="home-welcome-text">Welcome to Real estate Kenya, official website. We provide the interface for reliable accessibility of all the real estate dealerships in Kenya. We ensure that the process is smooth and fraud free. We also connect people with a pool of Real Estate properties that would never have existed in  our absence. Our mission is to bring clarity to the whole process and prevent any occurrences of frauds. If you wish to have more clarity feel free to call our customer care who is available during the public or government work ours or visit one of our offices in the following Kenyan cities: Nairobi, Mombasa, Nakuru, Kisumu.</div>
@@ -75,6 +84,6 @@ import Footer from '@/Components/Footer.vue'
       </div>
     </div>
     <hr>
-  </section>
-  <Footer/>
+    </section>
+    <Footer/>
 </template>

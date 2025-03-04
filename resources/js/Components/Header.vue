@@ -5,7 +5,7 @@ import { Link } from '@inertiajs/vue3'
 <template>
     <header>
     <div class="logo-area">
-      <div class="nav-logo"><img src="images/kenyan logo.png" alt="Kenyan logo"></div>
+      <div class="nav-logo"><img src="/images/kenyan logo.png" alt="Kenyan logo"></div>
       <div class="nav-title">Kenya real estate system</div>
     </div>
     <nav>
