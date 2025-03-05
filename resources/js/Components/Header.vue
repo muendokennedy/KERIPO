@@ -9,22 +9,22 @@ import { Link } from '@inertiajs/vue3'
       <div class="nav-title">Kenya real estate system</div>
     </div>
     <nav>
-        <Link :href="route('home')">Home</Link>
+        <Link :href="route('client.home')">Home</Link>
       <div class="link-container">
       <a class="drop-down">Land plots <i class="fa-solid fa-caret-down"></i></a>
       <div class="links">
-        <Link :href="route('urban')">Urban Plots</Link>
-        <Link :href="route('upcountry')">Upcountry Plots</Link>
+        <Link :href="route('client.urban')">Urban Plots</Link>
+        <Link :href="route('client.upcountry')">Upcountry Plots</Link>
       </div>
       </div>
       <div class="link-container">
       <a class="drop-down">Buildings <i class="fa-solid fa-caret-down"></i></a>
       <div class="links">
-        <Link :href="route('apartments')">Apartments</Link>
-        <Link :href="route('houses')">Houses</Link>
+        <Link :href="route('client.apartments')">Apartments</Link>
+        <Link :href="route('client.houses')">Houses</Link>
       </div>
       </div>
-      <Link :href="route('contact')">Contact</Link>
+      <Link :href="route('client.contact')">Contact</Link>
     </nav>
   </header>
 </template>

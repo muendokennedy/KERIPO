@@ -25,7 +25,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('login'), {
+    form.post(route('client.login.store'), {
         onFinish: () => form.reset('password'),
     });
 };
@@ -54,7 +54,7 @@ const submit = () => {
               <button type="submit" class="btn">Send</button>
             </div>
           </form>
-          <p class="account-already">Don't have an account yet?<Link :href="route('register')">sign up here</Link></p>
+          <p class="account-already">Don't have an account yet?<Link :href="route('client.register')">sign up here</Link></p>
         </div>
     </div>
   </section>

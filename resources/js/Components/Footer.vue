@@ -7,26 +7,26 @@ import { Link } from '@inertiajs/vue3'
       <div class="footer-info-box">
         <div class="link-box">
           <p class="footer-box-title">Main Links</p>
-          <Link :href="route('home')">Home</Link>
-          <Link :href="route('urban')">Urban Plots</Link>
-          <Link :href="route('apartments')">Residential Apartments</Link>
-          <Link :href="route('upcountry')">Upcountry Plots</Link>
-          <Link :href="route('houses')">Houses</Link>
+          <Link :href="route('client.home')">Home</Link>
+          <Link :href="route('client.urban')">Urban Plots</Link>
+          <Link :href="route('client.apartments')">Residential Apartments</Link>
+          <Link :href="route('client.upcountry')">Upcountry Plots</Link>
+          <Link :href="route('client.houses')">Houses</Link>
         </div>
         <div class="link-box">
           <p class="footer-box-title">Social media links</p>
-          <Link :href="route('upcountry')">Facebook</Link>
-          <Link :href="route('upcountry')">Twitter</Link>
-          <Link :href="route('upcountry')">Instagram</Link>
-          <Link :href="route('upcountry')">Pinterest</Link>
+          <Link :href="route('client.upcountry')">Facebook</Link>
+          <Link :href="route('client.upcountry')">Twitter</Link>
+          <Link :href="route('client.upcountry')">Instagram</Link>
+          <Link :href="route('client.upcountry')">Pinterest</Link>
         </div>
         <div class="link-box">
           <p class="footer-box-title">Our offices</p>
-          <Link :href="route('upcountry')">Nairobi</Link>
-          <Link :href="route('upcountry')">Mombasa</Link>
-          <Link :href="route('upcountry')">Nakuru</Link>
-          <Link :href="route('upcountry')">Kisumu</Link>
-          <Link :href="route('upcountry')">Login as an admin</Link>
+          <Link :href="route('client.upcountry')">Nairobi</Link>
+          <Link :href="route('client.upcountry')">Mombasa</Link>
+          <Link :href="route('client.upcountry')">Nakuru</Link>
+          <Link :href="route('client.upcountry')">Kisumu</Link>
+          <Link :href="route('client.upcountry')">Login as an admin</Link>
         </div>
         <div class="link-box">
           <p class="footer-box-title">Our mission</p>
