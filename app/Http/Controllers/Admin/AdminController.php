@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use Inertia\Inertia;
+use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PropertyResource;
 
 class AdminController extends Controller
 {
@@ -22,11 +24,11 @@ class AdminController extends Controller
 
     public function adminProperties()
     {
-        // $properties = Property::latest()->get();
+        $properties = Property::latest()->get();
 
         return Inertia::render('Admin/AdminProperties', [
-            // 'success' => session('success'),
-            // 'products' => ProductResource::collection($properties),
+            'success' => session('success'),
+            'properties' => PropertyResource::collection($properties),
         ]);
     }
 
