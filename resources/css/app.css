@@ -19,13 +19,13 @@
   --contact-form-background-color: #E8E8E8;
   --form-input-border-bottom-color: #707070;
 }
-section{
+/* section{
   padding: 2rem 5%;
   font-size: 1.4rem;
 }
 html{
   font-size: 62.5%;
-}
+} */
 .btn{
   display: block;
   text-decoration: none;
@@ -45,7 +45,7 @@ html{
   background: var(--primary-hover);
 }
 /* The navigation bar */
-header{
+/* header{
   position: sticky;
   top: 0;
   left: 0;
@@ -57,7 +57,7 @@ header{
   padding: 0 2%;
   align-items: center;
   z-index: 100;
-}
+} */
 header .logo-area .nav-logo{
   height: 3rem;
   width: 3rem;
@@ -177,7 +177,7 @@ nav .links:hover{
 .urban .urban-title span{
   color: var(--primary);
 }
-table{
+/* table{
   width: 100%;
   margin: 2rem 0;
   border-collapse: collapse;
@@ -191,7 +191,7 @@ th{
 }
 td{
   padding: 1.5rem 1.6rem;
-}
+} */
 .urban .call-to-action{
   font-size: 1.8rem;
   padding: 2rem 0;
@@ -234,7 +234,7 @@ td{
 .contact .contact-form .form-row .form-input{
   width: 45%;
   display: block;
-  margin: .2rem 0;
+  margin: .5rem 0;
 }
 .contact .contact-form .form-row .form-input input,
 .contact .contact-form .form-row .form-input select{
@@ -249,23 +249,24 @@ td{
   transition: all .3s ease-in-out;
 }
 .contact .contact-form .form-row .form-input label{
-    display: block;
-    margin: 1rem 0;
+ display: block;
+ margin: 1rem 0;
 }
 .contact .contact-form .form-row .textarea{
-    width: 100%;
+  width: 100%;
 }
 .contact .contact-form .form-row .textarea textarea{
-    resize: none;
-    padding: 1rem .5rem;
-    outline: none;
-    border: .2rem solid var(--form-input-border-bottom-color);
-    width: 100%;
-    background: var(--contact-form-background-color);
+  resize: none;
+  padding: 1rem .5rem;
+  outline: none;
+  border: .2rem solid var(--form-input-border-bottom-color);
+  width: 100%;
+  background: var(--contact-form-background-color);
 }
+
 .contact .contact-form .form-row .textarea textarea:focus{
-  border-color: var(--primary);
-  transition: all .3s ease-in-out;
+    border-color: var(--primary);
+    transition: all .3s ease-in-out;
 }
 .contact .contact-form .form-row .textarea label{
   bottom: 90%;
@@ -406,7 +407,7 @@ td{
   .signup .signup-form .form-input{
     width: 100%;
     display: block;
-    margin: 0;
+    margin: 1rem 0;
   }
   .signup .signup-form .form-input input,
   .signup .signup-form .form-input select{
@@ -500,3 +501,51 @@ footer .copyright-box{
 footer .copyright-box span{
   color: var(--primary);
 }
+.edit-product{
+    box-shadow: 10px 10px 30px 25px rgba(0,0,0,0.5);
+    transform: scale(0);
+    transition: all .2s ease-in-out;
+  }
+  .edit-product.active{
+    transform: scale(1);
+  }
+  .side-bar.active{
+    opacity: 0.2;
+  }
+  .main-content.active{
+    opacity: 0.2;
+  }
+  .dashboard-box-container{
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+  .uploaded-image{
+    width: 100%;
+    height: 100%;
+  }
+  .uploaded-image{
+    position: relative;
+  }
+  .uploaded-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .remove-btn1, .remove-btn2, .remove-btn3, .remove-btn4, .remove-btn1-edit, .remove-btn2-edit, .remove-btn3-edit, .remove-btn4-edit, .remove-btn1-admin{
+    width: 3.2rem;
+    height: 3.2rem;
+    background: #fff;
+    border: .1rem solid #1683ff;
+    color: #1683ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    top: -.5rem;
+    right: -.8rem;
+    cursor: pointer;
+  }
+  .remove-btn1 i, .remove-btn2 i, .remove-btn3 i, .remove-btn4 i, .remove-btn1-edit i, .remove-btn2-edit i, .remove-btn3-edit i, .remove-btn4-edit i, .remove-btn1-admin i{
+    font-size: 2rem;
+  }
+

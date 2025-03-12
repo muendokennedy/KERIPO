@@ -55,7 +55,7 @@ const submit = () => {
               <button type="submit" class="btn">Send</button>
             </div>
           </form>
-          <p class="account-already">Already have an account?<Link :href="route('client.login')">login in here</Link></p>
+          <p class="account-already">Already have an account?<Link :href="route('client.login.show')">login in here</Link></p>
         </div>
     </div>
   </section>

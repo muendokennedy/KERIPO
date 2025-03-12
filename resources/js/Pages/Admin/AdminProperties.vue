@@ -1,11 +1,11 @@
 <script setup>
 import AdminSidebar from '@/Components/app/AdminSidebar.vue'
 import AdminHeader from '@/Components/app/AdminHeader.vue'
-import ProductModal from '@/Components/app/ProductModal.vue'
+// import ProductModal from '@/Components/app/ProductModal.vue'
 import {ref} from 'vue'
 import { PencilSquareIcon, TrashIcon, CloudArrowUpIcon, XMarkIcon, CheckCircleIcon } from '@heroicons/vue/24/solid'
-import {isImage} from '@/helpers.js'
-import { useForm} from '@inertiajs/vue3'
+// import {isImage} from '@/helpers.js'
+import { useForm, Link} from '@inertiajs/vue3'
 
 const props = defineProps({
   products: {
@@ -93,17 +93,16 @@ const onModalhide = () => {
             </Transition>
         <div class="recent-sales bg-white p-4 rounded-md">
           <h2 class="text-[rgb(4,46,255)] font-semibold text-lg md:text-xl py-4 capitalize">Products in stock</h2>
-          <div v-if="products.length !== 0">
+          <div v-if="products?.length !== 0">
               <div class="table-container overflow-x-auto">
                 <table  class="w-[45rem] md:w-full border-2 my-4">
                   <thead>
                     <tr>
                       <th class="border-2 py-4 px-2">Category</th>
-                      <th class="border-2 py-4 px-2">Name</th>
-                      <th class="border-2 py-4 px-2">Image</th>
-                      <th class="border-2 py-4 px-2">Price</th>
-                      <th class="border-2 py-4 px-2">Discounted price</th>
-                      <th class="border-2 py-4 px-2">Brand</th>
+                      <th class="border-2 py-4 px-2">Location</th>
+                      <th class="border-2 py-4 px-2">Owner Name</th>
+                      <th class="border-2 py-4 px-2">Valuation</th>
+                      <th class="border-2 py-4 px-2">Acquisition status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -131,8 +130,8 @@ const onModalhide = () => {
                       <td class="border-2 py-2 px-2" v-html="product.productDescription"></td>
                       <td class="border-2 py-2 px-6 w-1/2">
                         <div class="flex w-full justify-between">
-                          <button @click="openModal(product)" type="button" class="bg-[#FFCF10] inline-flex items-center gap-2 edit-button py-3 px-8 capitalize rounded-md">edit <PencilSquareIcon class="size-6"/> </button>
-                          <button @click="deleteProduct(product)" type="button" class="bg-[#FF4004] inline-flex items-center gap-2 edit-button py-3 px-8 capitalize rounded-md">remove <TrashIcon class="size-6"/> </button>
+                          <button @click="editProperty(product)" type="button" class="bg-[#FFCF10] inline-flex items-center gap-2 edit-button py-3 px-8 capitalize rounded-md">edit <PencilSquareIcon class="size-6"/> </button>
+                          <button @click="deleteProperty(product)" type="button" class="bg-[#FF4004] inline-flex items-center gap-2 edit-button py-3 px-8 capitalize rounded-md">remove <TrashIcon class="size-6"/> </button>
                         </div>
                       </td>
                     </tr>
@@ -142,70 +141,10 @@ const onModalhide = () => {
           </div>
           <div v-else class="font-bold">There are no products in the store, kindly upload them below!</div>
         </div>
-        <ProductModal :product="editProduct" :success="success"/>
+        <Link :href="route('admin.property.new.show')" as="button" class="capitalize px-4 py-2 bg-[#042EFF] rounded-md text-white my-4">add new property</Link>
         </main>
     </section>
-  <TransitionRoot appear :show="isOpen" as="template">
-    <Dialog as="div" @close="closeModal" class="relative z-50">
-      <TransitionChild
-        as="template"
-        enter="duration-300 ease-out"
-        enter-from="opacity-0"
-        enter-to="opacity-100"
-        leave="duration-200 ease-in"
-        leave-from="opacity-100"
-        leave-to="opacity-0"
-      >
-        <div class="fixed inset-0 bg-black/25" />
-      </TransitionChild>
 
-      <div class="fixed inset-0 overflow-y-auto">
-        <div
-          class="flex min-h-full items-center justify-center p-4 text-center"
-        >
-          <TransitionChild
-            as="template"
-            enter="duration-300 ease-out"
-            enter-from="opacity-0 scale-95"
-            enter-to="opacity-100 scale-100"
-            leave="duration-200 ease-in"
-            leave-from="opacity-100 scale-100"
-            leave-to="opacity-0 scale-95"
-          >
-            <DialogPanel
-              class="w-full ml-48 transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
-            >
-              <div>
-
-                <ProductModal :product="editProduct" @hide="closeModal" :success="success"/>
-
-              </div>
-            </DialogPanel>
-          </TransitionChild>
-        </div>
-      </div>
-    </Dialog>
-  </TransitionRoot>
 </template>
 <style scoped>
-.slide-fade-enter-active,
-.slide-fade-leave-active{
-    transition: transform .3s ease, opacity .3s ease;
-}
-.slide-fade-enter-from{
-    transform: translateX(100%);
-    opacity: 0;
-}
-.slide-fade-enter-to{
-    transform: translateX(0);
-    opacity: 1;
-}
-.slide-fade-leave-from{
-    transform: translateX(0);
-    opacity: 1;
-}
-.slide-fade-leave-to{
-    transform: translateX(100%);
-    opacity: 1;
-}
 </style>

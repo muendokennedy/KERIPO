@@ -87,3 +87,5 @@ const authenticatedUser = usePage().props.auth.user
     </section>
     <Footer/>
 </template>
+<style scoped>
+</style>

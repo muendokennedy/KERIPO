@@ -36,7 +36,7 @@ const submit = () => {
                 form.errors.email ? 'border-red-500' : 'border-[#042EFF]'
               ]">
             </div>
-            <p class="capitalize my-4"><Link :href="route('admin.register')" class="text-[#042eff] hover:underline transition-all duration-300 ease-in-out">Forgot password</Link></p>
+            <p class="capitalize my-4"><Link :href="route('admin.register.show')" class="text-[#042eff] hover:underline transition-all duration-300 ease-in-out">Forgot password</Link></p>
             <button type="submit" class="text-white bg-[#042EFF] block w-full px-4 py-3 rounded-md my-6 capitalize hover:bg-[#384857] transition-all duration-300 ease-in-out">log in as admin</button>
           </form>
         </div>

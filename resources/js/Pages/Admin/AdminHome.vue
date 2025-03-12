@@ -9,7 +9,7 @@ import { ArrowUpIcon, ArrowDownIcon } from '@heroicons/vue/24/solid'
 
 <template>
     <AdminSidebar/>
-    <section class="ml-[15rem] w-[calc(100% - 15rem)] main-content min-h-screen">
+    <section class="text-base ml-[15rem] w-[calc(100% - 15rem)] main-content min-h-screen">
     <AdminHeader/>
       <main class="bg-[#E4E7F3] pt-20 px-[3%] pb-4">
         <div class="dashboard-box-container py-4 grid grid-cols-2 md:grid-cols-3 gap-4">

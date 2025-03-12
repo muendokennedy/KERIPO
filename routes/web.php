@@ -23,13 +23,13 @@ Route::middleware('prevent.back.history')->group(function () {
     Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
         Route::get('/dashboard', [AdminController::class, 'adminHome'])->name('admin.dashboard');
         Route::get('/analytics', [AdminController::class, 'adminAnalytics'])->name('admin.analytics');
-        Route::get('/products', [AdminController::class, 'adminProducts'])->name('admin.products');
+        Route::get('/properties', [AdminController::class, 'adminProperties'])->name('admin.properties');
         Route::get('/orders', [AdminController::class, 'adminOrders'])->name('admin.orders');
-        Route::get('/stock', [AdminController::class, 'adminStock'])->name('admin.stock');
         Route::get('/clientinfo', [AdminController::class, 'adminClientinfo'])->name('admin.clientinfo');
         Route::get('/settings', [AdminController::class, 'adminSettings'])->name('admin.settings');
         // Admin auth routes
 
+        Route::get('/property/new/show', [AdminPropertyController::class, 'showNewPropertyForm'])->name('admin.property.new.show');
         Route::post('/property/store', [AdminPropertyController::class, 'storeProperty'])->name('admin.property.store');
         Route::put('/property/update/{property}', [AdminPropertyController::class, 'updateProperty'])->name('admin.property.update');
         Route::delete('/property/delete/{property}', [AdminPropertyController::class, 'deleteProperty'])->name('admin.property.delete');

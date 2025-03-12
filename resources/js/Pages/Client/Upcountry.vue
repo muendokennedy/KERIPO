@@ -35,7 +35,7 @@ import { Link } from '@inertiajs/vue3'
     <hr>
     <div class="call-to-action">Want to get yourself a piece of land?</div>
     <div class="call-to-action-details">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda facere numquam sapiente praesentium maiores ipsum, fugiat consectetur tenetur veniam quam dolor at pariatur vitae cupiditate eligendi ullam quos optio consequatur earum dolores expedita. Repellendus perferendis incidunt quaerat explicabo quia harum distinctio, ad accusamus dolorum tempora vel nostrum ullam. Aliquid, debitis?</div>
-    <Link :href="route('upcountry')" class="btn">Click here to begin the process</Link>
+    <Link :href="route('client.upcountry')" class="btn">Click here to begin the process</Link>
     <hr>
   </section>
   <Footer/>

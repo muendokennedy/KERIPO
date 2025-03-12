@@ -1,5 +1,5 @@
 <script setup>
-import {CameraIcon, CloudArrowUpIcon} from '@heroicons/vue/24/solid'
+// import {CameraIcon, CloudArrowUpIcon} from '@heroicons/vue/24/solid'
 import { useForm, Link } from '@inertiajs/vue3'
 import {ref} from 'vue'
 
@@ -79,11 +79,11 @@ const submit = () => {
                 </div>
                 <div v-else class="flex flex-col items-center">
                     <span class="text-4xl text-[#042EFF]">
-                            <input type="file" @change="onAvatarChoose" @click.stop class="absolute opacity-0 left-0 top-0 right-0 bottom-0">
+                            <!-- <input type="file" @change="onAvatarChoose" @click.stop class="absolute opacity-0 left-0 top-0 right-0 bottom-0"> -->
                             <CloudArrowUpIcon class="size-8"/>
                     </span>
                     <div class="initial-info">
-                      <span for="adminProfile" class="block py-2">Browse image:</span>
+                      <span  class="block py-2">Browse image:</span>
                     </div>
                 </div>
               </div>
@@ -98,7 +98,7 @@ const submit = () => {
               <p v-if="form.errors.password_confirmation" class="text-red-500">{{ form.errors.password_confirmation }}</p>
             </div>
             <button type="submit" class="text-white bg-[#042EFF] block w-full px-4 py-3 rounded-md my-6 capitalize hover:bg-[#384857] transition-all duration-300 ease-in-out">signup</button>
-            <p class="capitalize"><span>already have an account? </span> <Link :href="route('admin.login')" class="text-[#042eff] hover:underline transition-all duration-300 ease-in-out">login here</Link></p>
+            <p class="capitalize"><span>already have an account? </span> <Link :href="route('admin.login.show')" class="text-[#042eff] hover:underline transition-all duration-300 ease-in-out">login here</Link></p>
           </form>
         </div>
       </main>
