@@ -2,6 +2,7 @@
 import AdminSidebar from '@/Components/app/AdminSidebar.vue'
 import AdminHeader from '@/Components/app/AdminHeader.vue'
 import { useForm } from '@inertiajs/vue3'
+import { ref } from 'vue'
 
 const form = useForm({
     category: '',
@@ -10,6 +11,13 @@ const form = useForm({
     propertyValuation: '',
     // avatar: null
 })
+
+const categories = ref([
+    'Urban Plot',
+    'Upcountry Plot',
+    'House',
+    'Apartment'
+])
 
 const submit = () => {
     form.post(route('admin.property.store'))
@@ -34,19 +42,19 @@ const submit = () => {
           <form @submit.prevent="submit">
 
               <div class="form-row w-full flex flex-col md:flex-row justify-between">
-                      <div class="input-box md:basis-[48%]">
+                      <div class="relative input-box md:basis-[48%]">
                         <label for="category" class="block py-3">Select Category:</label>
-                        <select v-model="form.category" class="border-2 outline-none rounded-md px-4 py-2 w-full focus:border-[#042EFF] transition-all duration-300 ease-in-out">
-                            <option value="Urban Plot">Urban Plot</option>
-                            <option value="Upcountry Plot">Upcountry Plot</option>
-                            <option value="House">House</option>
-                            <option value="Apartment">Apartment</option>
+                        <select v-model="form.category" :class="[form.errors.category ? 'border-red-500': '']" class="border-2 outline-none rounded-md px-4 py-2 w-full focus:border-[#042EFF] transition-all duration-300 ease-in-out">
+                            <option v-for="category in categories" :key="category"  :value="category">{{ category }}</option>
                         </select>
+                        <div v-if="!form.category" class="absolute left-4 transform -translate-y-[2rem] pointer-events-none">
+                            -----Select a category------
+                        </div>
                         <p v-if="form.errors.category" class="text-red-500">{{ form.errors.category }}</p>
                       </div>
                       <div class="input-box md:basis-[48%]">
                         <label for="ownersName" class="block py-3">Enter the Owner's name:</label>
-                        <input type="text" v-model="form.ownersName" class="px-2 py-2 rounded-md outline-none border-2 w-full focus:border-[#042EFF] transition-all duration-300 ease-in-out">
+                        <input type="text" v-model="form.ownersName" :class="[form.errors.ownersName ? 'border-red-500': '']" class="px-2 py-2 rounded-md outline-none border-2 w-full focus:border-[#042EFF] transition-all duration-300 ease-in-out">
                         <p v-if="form.errors.ownersName" class="text-red-500">{{ form.errors.ownersName }}</p>
                       </div>
                     </div>
