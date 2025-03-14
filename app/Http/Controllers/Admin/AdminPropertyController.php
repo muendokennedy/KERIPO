@@ -6,7 +6,9 @@ use Inertia\Inertia;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PropertyResource;
 use App\Http\Requests\StorePropertyRequest;
+use App\Http\Requests\UpdatePropertyRequest;
 
 class AdminPropertyController extends Controller
 {
@@ -20,7 +22,7 @@ class AdminPropertyController extends Controller
     {
         $propertyData = $request->validated();
 
-        $propertyId = mt_rand(100000, 999999);
+        $propertyId = mt_rand();
 
         $property = Property::create([
             'propertyId' => $propertyId,
@@ -30,5 +32,35 @@ class AdminPropertyController extends Controller
             'propertyValuation' => $propertyData['propertyValuation'],
             'acquisitionStatus' => 'Not Acquired'
         ]);
+
+        return redirect()->route('admin.properties');
+    }
+
+    public function showEditPropertyForm(Property $property)
+    {
+        return Inertia::render('Admin/AdminEditProperty', [
+            'property' => new PropertyResource($property)
+        ]);
+    }
+
+    public function updateProperty(UpdatePropertyRequest $request, Property $property)
+    {
+        $propertyData = $request->validated();
+
+        $property->category = $propertyData['category'];
+        $property->ownersName = $propertyData['ownersName'];
+        $property->location = $propertyData['location'];
+        $property->propertyValuation = $propertyData['propertyValuation'];
+
+        $property->save();
+
+        return redirect()->route('admin.properties');
+    }
+
+    public function deleteProperty(Property $property)
+    {
+        $property->delete();
+
+        return redirect()->route('admin.properties');
     }
 }

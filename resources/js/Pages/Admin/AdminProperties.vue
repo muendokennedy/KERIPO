@@ -19,24 +19,10 @@ const props = defineProps({
 
 const form = useForm({})
 
-const isOpen = ref(false)
-const editProduct = ref({})
 const showSuccessNotification = ref(false)
 
-function closeModal(response) {
-  isOpen.value = false
-  onModalhide()
-  if(response){
-      setTimeout(() => {
-        showSuccessNotification.value = false
-      }, 8000)
-      setTimeout(() => {
-          showSuccessNotification.value = true
-      }, 800)
-  }
-}
 const deleteProduct = (product) => {
-    form.delete(route('admin.product.delete', product), {
+    form.delete(route('admin.property.delete', product), {
         onSuccess: () => {
             setTimeout(() => {
             showSuccessNotification.value = false
@@ -99,8 +85,8 @@ const deleteProduct = (product) => {
                     <tr v-for="(property, index) in properties" :key="index">
                       <td class="border-2 py-2 px-6 w-1/2">
                         <div class="flex w-full justify-between">
-                          <button @click="editProperty(property)" type="button" class="bg-[#FFCF10] inline-flex items-center gap-2 edit-button py-3 px-8 capitalize rounded-md">edit <PencilSquareIcon class="size-6"/> </button>
-                          <button @click="deleteProperty(property)" type="button" class="bg-[#FF4004] inline-flex items-center gap-2 edit-button py-3 px-8 capitalize rounded-md">remove <TrashIcon class="size-6"/> </button>
+                          <Link :href="route('admin.property.edit', property)" as="button" class="bg-[#FFCF10] inline-flex items-center gap-2 edit-button py-3 px-8 capitalize rounded-md">edit <PencilSquareIcon class="size-6"/> </Link>
+                          <button type="button" @click="deleteProduct(property)" class="bg-[#FF4004] inline-flex items-center gap-2 edit-button py-3 px-8 capitalize rounded-md">remove <TrashIcon class="size-6"/> </button>
                         </div>
                       </td>
                     </tr>
@@ -108,7 +94,7 @@ const deleteProduct = (product) => {
                 </table>
               </div>
           </div>
-          <div v-else class="font-bold">There are no products in the store, kindly upload them below!</div>
+          <div v-else class="font-bold">There are no properties listed in our portal, kindly upload them below!</div>
         </div>
         <Link :href="route('admin.property.new.show')" as="button" class="capitalize px-4 py-2 bg-[#042EFF] rounded-md text-white my-4">add new property</Link>
         </main>
