@@ -3,7 +3,7 @@ import AdminSidebar from '@/Components/app/AdminSidebar.vue'
 import AdminHeader from '@/Components/app/AdminHeader.vue'
 // import ProductModal from '@/Components/app/ProductModal.vue'
 import {ref} from 'vue'
-import { PencilSquareIcon, TrashIcon, CloudArrowUpIcon, XMarkIcon, CheckCircleIcon } from '@heroicons/vue/24/solid'
+import { PencilSquareIcon, TrashIcon, CloudArrowUpIcon, XMarkIcon, CheckCircleIcon, ExclamationTriangleIcon } from '@heroicons/vue/24/solid'
 // import {isImage} from '@/helpers.js'
 import { useForm, Link} from '@inertiajs/vue3'
 
@@ -20,9 +20,30 @@ const props = defineProps({
 const form = useForm({})
 
 const showSuccessNotification = ref(false)
+const showPropertyDeleteModal = ref(false)
+const propertyToDelete = ref(null)
 
-const deleteProduct = (product) => {
-    form.delete(route('admin.property.delete', product), {
+const showDeleteModal = (property) => {
+    propertyToDelete.value = property
+    showPropertyDeleteModal.value = true
+}
+
+const confirmDelete = () => {
+    if(propertyToDelete.value){
+        deleteProperty(propertyToDelete.value)
+        closeDeleteModal()
+    }
+}
+
+const closeDeleteModal = () => {
+    showPropertyDeleteModal.value = false
+    propertyToDelete.value = null
+}
+
+const deleteProperty = (property) => {
+
+
+    form.delete(route('admin.property.delete', property), {
         onSuccess: () => {
             setTimeout(() => {
             showSuccessNotification.value = false
@@ -47,6 +68,14 @@ const deleteProduct = (product) => {
                   <XMarkIcon @click="showSuccessNotification = false" class="size-6 cursor-pointer absolute right-2"/>
                 </div>
             </Transition>
+            <div v-show="showPropertyDeleteModal" class="bg-[#f1dd89] p-4 rounded-md w-[50rem] h-[6rem] fixed right-[2rem]">
+                <XMarkIcon @click="closeDeleteModal" class="size-6 cursor-pointer absolute right-2"/>
+                <div class="flex gap-2 items-center">
+                    <ExclamationTriangleIcon class="size-10 cursor-pointer text-[#FFCF10]"/>
+                    <p>You are about to permanently delete the selected property!!</p>
+                </div>
+                <button @click="confirmDelete" class="absolute right-2 p-2 bg-red-500 rounded-md text-white bottom-2">Continue</button>
+            </div>
         <div class="recent-sales bg-white p-4 rounded-md">
           <h2 class="text-[rgb(4,46,255)] font-semibold text-lg md:text-xl py-4 capitalize">Properties</h2>
           <div v-if="properties.length !== 0">
@@ -86,7 +115,7 @@ const deleteProduct = (product) => {
                       <td class="border-2 py-2 px-6 w-1/2">
                         <div class="flex w-full justify-between">
                           <Link :href="route('admin.property.edit', property)" as="button" class="bg-[#FFCF10] inline-flex items-center gap-2 edit-button py-3 px-8 capitalize rounded-md">edit <PencilSquareIcon class="size-6"/> </Link>
-                          <button type="button" @click="deleteProduct(property)" class="bg-[#FF4004] inline-flex items-center gap-2 edit-button py-3 px-8 capitalize rounded-md">remove <TrashIcon class="size-6"/> </button>
+                          <button type="button" @click="showDeleteModal(property)" class="bg-[#FF4004] inline-flex items-center gap-2 edit-button py-3 px-8 capitalize rounded-md">remove <TrashIcon class="size-6"/> </button>
                         </div>
                       </td>
                     </tr>

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Inertia\Inertia;
-use App\Models\Property;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PropertyResource;
+use App\Models\Property;
+use Inertia\Inertia;
 
 class AdminController extends Controller
 {
@@ -46,5 +45,4 @@ class AdminController extends Controller
     {
         return Inertia::render('Admin/AdminSettings');
     }
-
 }

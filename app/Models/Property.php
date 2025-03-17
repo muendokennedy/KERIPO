@@ -14,8 +14,6 @@ class Property extends Model
         'ownersName',
         'location',
         'propertyValuation',
-        'acquisitionStatus'
+        'acquisitionStatus',
     ];
-
-
 }

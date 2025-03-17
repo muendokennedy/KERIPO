@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Inertia\Inertia;
-use App\Models\Property;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PropertyResource;
 use App\Http\Requests\StorePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
+use App\Http\Resources\PropertyResource;
+use App\Models\Property;
+use Inertia\Inertia;
 
 class AdminPropertyController extends Controller
 {
@@ -30,16 +29,16 @@ class AdminPropertyController extends Controller
             'ownersName' => $propertyData['ownersName'],
             'location' => $propertyData['location'],
             'propertyValuation' => $propertyData['propertyValuation'],
-            'acquisitionStatus' => 'Not Acquired'
+            'acquisitionStatus' => 'Not Acquired',
         ]);
 
-        return redirect()->route('admin.properties');
+        return redirect()->route('admin.properties')->with('success', 'The property has been created successfully');
     }
 
     public function showEditPropertyForm(Property $property)
     {
         return Inertia::render('Admin/AdminEditProperty', [
-            'property' => new PropertyResource($property)
+            'property' => new PropertyResource($property),
         ]);
     }
 
@@ -54,13 +53,13 @@ class AdminPropertyController extends Controller
 
         $property->save();
 
-        return redirect()->route('admin.properties');
+        return redirect()->route('admin.properties')->with('success', 'The property has been updated successfully');
     }
 
     public function deleteProperty(Property $property)
     {
         $property->delete();
 
-        return redirect()->route('admin.properties');
+        return back()->with('success', 'The property has been removed successfully');
     }
 }

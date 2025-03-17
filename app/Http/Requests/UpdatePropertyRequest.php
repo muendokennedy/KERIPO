@@ -26,7 +26,7 @@ class UpdatePropertyRequest extends FormRequest
             'ownersName' => 'required | string',
             'location' => 'required | string',
             'propertyValuation' => 'required | numeric',
-         ];
+        ];
     }
 
     public function messages()
