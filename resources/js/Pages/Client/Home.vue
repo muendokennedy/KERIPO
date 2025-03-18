@@ -12,50 +12,50 @@ const authenticatedUser = usePage().props.auth.user
 
 <template>
     <Header/>
-    <section class="home">
-    <div class="welcome-section">
-        <div v-if="$page.props.auth.user" class="home-title">
+    <section class="py-2 px-[5%]">
+    <div class="welcome-section flex items-center w-full justify-between my-5 mx-0">
+        <div v-if="$page.props.auth.user" class="home-title text-lg py-5 px-0 font-semibold">
             Hello
             <span class="text-[#2DE19D]">{{ authenticatedUser.name }}</span>
             Welcome back
         </div>
-      <div v-else class="home-title">Welcome to the only
+      <div v-else class="home-title text-lg py-5 px-0 font-semibold">Welcome to the only
         <span class="text-[#2DE19D]">authentic</span>
         realestate portal in Kenya
       </div>
-      <div v-if="authenticatedUser" class="signup-login">
-          <Link :href="route('client.logout')" as="button" method="post" class="btn">logout</Link>
+      <div v-if="$page.props.auth.user" class="signup-login flex items-center justify-end gap-8 w-[20%]">
+          <Link :href="route('client.logout')" as="button" method="post" class="rounded-3xl border-none outline-none bg-[#2DE19D] py-3 px-6 text-center text-base capitalize text-black cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#15f49f]">logout</Link>
       </div>
-      <div v-else class="signup-login">
-          <Link :href="route('client.register.show')" class="btn">signup</Link>
-          <Link :href="route('client.login.show')" class="btn">login</Link>
+      <div v-else class="signup-login flex items-center justify-end gap-8 w-[20%]">
+          <Link :href="route('client.register.show')" class="rounded-3xl border-none outline-none bg-[#2DE19D] py-3 px-6 text-center text-base capitalize text-black cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#15f49f]">signup</Link>
+          <Link :href="route('client.login.show')" class="rounded-3xl border-none outline-none bg-[#2DE19D] py-3 px-6 text-center text-base capitalize text-black cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#15f49f]">login</Link>
         </div>
     </div>
     <div class="home-welcome-text">Welcome to Real estate Kenya, official website. We provide the interface for reliable accessibility of all the real estate dealerships in Kenya. We ensure that the process is smooth and fraud free. We also connect people with a pool of Real Estate properties that would never have existed in  our absence. Our mission is to bring clarity to the whole process and prevent any occurrences of frauds. If you wish to have more clarity feel free to call our customer care who is available during the public or government work ours or visit one of our offices in the following Kenyan cities: Nairobi, Mombasa, Nakuru, Kisumu.</div>
-    <div class="home-title">We deal in:</div>
+    <div class="home-title text-lg py-5 px-0 font-semibold">We deal in:</div>
     <hr>
-    <div class="home-property-box">
-      <div class="home-property-box-title">Real estate <span>Apartments</span></div>
-      <div class="property-box">
-        <div class="property-image">
-          <img src="images/appartment.jpg" alt="">
+    <div class="home-property-box my-10 mx-0">
+      <div class="home-property-box-title text-lg font-semibold">Real estate <span class="text-[#2DE19D]">Apartments</span></div>
+      <div class="property-box my-5 mx-0 flex justify-between w-full">
+        <div class="property-image h-[300px] w-[500px]">
+          <img class="h-full w-full rounded-md" src="images/appartment.jpg" alt="">
         </div>
-        <div class="property-details">
+        <div class="property-details w-[600px]">
           We have Real estate Apartments. These exist in several forms. We may have someone who is selling an already existing Apartment, an apartment that is fresh from construction and is under sale and many other other situations. All these have different prices and we are not in control of the purchase prices.
           They appear as valued by the owners.
-          <Link :href="route('client.apartments')" class="btn">see more</Link>
+          <Link class="rounded-3xl border-none outline-none bg-[#2DE19D] py-3 px-6 text-center text-base capitalize text-black cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#15f49f] block w-36 my-5 mx-0" :href="route('client.apartments')" >see more</Link>
         </div>
       </div>
     </div>
     <hr>
-    <div class="home-property-box">
-      <div class="home-property-box-title"><span>Urban </span>Land Plots </div>
-      <div class="property-box">
-        <div class="property-image">
-          <img src="images/land plot.jpg" alt="">
+    <div class="home-property-box my-10 mx-0">
+      <div class="home-property-box-title text-lg font-semibold"><span class="text-[#2DE19D]">Urban </span>Land Plots </div>
+      <div class="property-box my-5 mx-0 flex justify-between w-full">
+        <div class="property-image h-[300px] w-[500px]">
+          <img class="h-full w-full rounded-md" src="images/land plot.jpg" alt="">
         </div>
-        <div class="property-details">We have plots of land which are specifically located in the urban or metrolpolitan regions. These of course are more expensive than the other similar plots of land and are much smaller. However they involve long processes of legal ownership authenticity. Over 90% of them are sold already built up. You can see more about these properties by clicking the button below.
-          <Link :href="route('client.urban')" class="btn">see more</Link>
+        <div class="property-details w-[600px]">We have plots of land which are specifically located in the urban or metrolpolitan regions. These of course are more expensive than the other similar plots of land and are much smaller. However they involve long processes of legal ownership authenticity. Over 90% of them are sold already built up. You can see more about these properties by clicking the button below.
+          <Link class="rounded-3xl border-none outline-none bg-[#2DE19D] py-3 px-6 text-center text-base capitalize text-black cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#15f49f] block w-36 my-5 mx-0" :href="route('client.urban')">see more</Link>
         </div>
       </div>
     </div>

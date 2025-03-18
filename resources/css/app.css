@@ -26,7 +26,7 @@
 html{
   font-size: 62.5%;
 } */
-.btn{
+/* .btn{
   display: block;
   text-decoration: none;
   border: none;
@@ -43,7 +43,7 @@ html{
 }
 .btn:hover{
   background: var(--primary-hover);
-}
+} */
 /* The navigation bar */
 /* header{
   position: sticky;
@@ -58,7 +58,7 @@ html{
   align-items: center;
   z-index: 100;
 } */
-header .logo-area .nav-logo{
+/* header .logo-area .nav-logo{
   height: 3rem;
   width: 3rem;
 }
@@ -75,8 +75,8 @@ header .logo-area{
 header .logo-area .nav-logo img{
   height: 100%;
   width: 100%;
-}
-nav{
+} */
+/* nav{
   display: flex;
   gap: 2rem;
   position: relative;
@@ -87,11 +87,11 @@ nav a{
   color: var(--primary-text-color);
   font-size: 1.6rem;
   padding: 1.5rem 0;
-}
-nav .link-container{
+} */
+/* nav .link-container{
   position: relative;
-}
-nav .link-container .links{
+} */
+/* nav .link-container .links{
   display: none;
   width: 15rem;
   position: absolute;
@@ -107,40 +107,40 @@ nav .link-container:hover > .links{
 }
 nav .links:hover{
   display: block;
-}
-.home .home-title{
+} */
+/* .home .home-title{
   font-size: 1.8rem;
   padding: 2rem 0;
   font-weight: 600;
-}
-.home .welcome-section{
+} */
+/* .home .welcome-section{
   align-items: center;
   display: flex;
   width: 100%;
   justify-content: space-between;
   margin: 2rem 0;
-}
-.home .welcome-section .signup-login{
+} */
+/* .home .welcome-section .signup-login{
   align-items: center;
   display: flex;
   justify-content: flex-end;
   gap: 3rem;
   width: 20%;
-}
-.home .welcome-section .signup-login a,
+} */
+/* .home .welcome-section .signup-login a,
 .home .welcome-section .signup-login button{
   padding: 1rem 2.5rem;
-}
-.home .home-property-box{
+} */
+/* .home .home-property-box{
   margin: 4rem 0;
-}
-.home .home-property-box-title{
+} */
+/* .home .home-property-box-title{
   font-size: 1.8rem;
   font-weight: 600;
 }
 .home .home-property-box-title span{
   color: var(--primary);
-}
+} */
 .home .home-property-box .property-box{
   margin: 2rem 0;
   display: flex;
