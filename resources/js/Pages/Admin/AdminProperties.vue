@@ -2,7 +2,7 @@
 import AdminSidebar from '@/Components/app/AdminSidebar.vue'
 import AdminHeader from '@/Components/app/AdminHeader.vue'
 // import ProductModal from '@/Components/app/ProductModal.vue'
-import {ref} from 'vue'
+import {onMounted, ref} from 'vue'
 import { PencilSquareIcon, TrashIcon, CloudArrowUpIcon, XMarkIcon, CheckCircleIcon, ExclamationTriangleIcon } from '@heroicons/vue/24/solid'
 // import {isImage} from '@/helpers.js'
 import { useForm, Link} from '@inertiajs/vue3'
@@ -40,6 +40,14 @@ const closeDeleteModal = () => {
     propertyToDelete.value = null
 }
 
+onMounted(() => {
+    showSuccessNotification.value = true
+
+    setTimeout(() => {
+        showSuccessNotification.value = false
+    }, 8000)
+})
+
 const deleteProperty = (property) => {
 
 
@@ -60,14 +68,14 @@ const deleteProperty = (property) => {
     <AdminSidebar/>
     <section class="ml-[15rem] w-[calc(100% - 15rem)] main-content min-h-screen">
     <AdminHeader/>
-      <main class="bg-[#E4E7F3] pt-20 px-[3%] pb-4">
-            <Transition name="slide-fade">
-                <div v-show="showSuccessNotification && success" class="flash-message transition-all duration-300 flex gap-2 text-white bg-green-500 border-green-700 border rounded-md fixed right-20 top-20 w-[600px] p-4 z-10">
-                  <CheckCircleIcon class="size-6 cursor-pointer"/>
-                  <span>{{ success }}</span>
-                  <XMarkIcon @click="showSuccessNotification = false" class="size-6 cursor-pointer absolute right-2"/>
-                </div>
-            </Transition>
+    <main class="bg-[#E4E7F3] pt-20 px-[3%] pb-4">
+        <Transition name="slide-fade">
+            <div v-show="showSuccessNotification && success" class="flash-message transition-all duration-300 flex gap-2 text-white bg-green-500 border-green-700 border rounded-md fixed right-20 top-20 w-[600px] p-4 z-10">
+                <CheckCircleIcon class="size-6 cursor-pointer"/>
+                <span>{{ success }}</span>
+                <XMarkIcon @click="showSuccessNotification = false" class="size-6 cursor-pointer absolute right-2"/>
+            </div>
+        </Transition>
             <div v-show="showPropertyDeleteModal" class="bg-[#f1dd89] p-4 rounded-md w-[50rem] h-[6rem] fixed right-[2rem]">
                 <XMarkIcon @click="closeDeleteModal" class="size-6 cursor-pointer absolute right-2"/>
                 <div class="flex gap-2 items-center">

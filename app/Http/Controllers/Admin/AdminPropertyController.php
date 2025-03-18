@@ -21,7 +21,12 @@ class AdminPropertyController extends Controller
     {
         $propertyData = $request->validated();
 
-        $propertyId = mt_rand();
+        $propertyId = mt_rand(100000000, 999999999);
+
+        //TODO come up with a function that does not product duplicates
+        if(Property::where('propertyId', $propertyId)){
+            $propertyId = mt_rand(100000000, 999999999);
+        }
 
         $property = Property::create([
             'propertyId' => $propertyId,
@@ -39,6 +44,7 @@ class AdminPropertyController extends Controller
     {
         return Inertia::render('Admin/AdminEditProperty', [
             'property' => new PropertyResource($property),
+            'success' => session('success')
         ]);
     }
 
@@ -53,7 +59,8 @@ class AdminPropertyController extends Controller
 
         $property->save();
 
-        return redirect()->route('admin.properties')->with('success', 'The property has been updated successfully');
+
+      return redirect()->route('admin.properties')->with('success', 'The property has been updated successfully');
     }
 
     public function deleteProperty(Property $property)
