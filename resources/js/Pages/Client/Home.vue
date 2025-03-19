@@ -60,26 +60,26 @@ const authenticatedUser = usePage().props.auth.user
       </div>
     </div>
     <hr>
-    <div class="home-property-box">
-      <div class="home-property-box-title"><span>Upcountry </span>Land Plots </div>
-      <div class="property-box">
-        <div class="property-image">
-          <img src="images/land plot2.jpeg" alt="">
+    <div class="home-property-box my-10 mx-0">
+      <div class="home-property-box-title text-lg font-semibold"><span class="text-[#2DE19D]">Upcountry </span>Land Plots </div>
+      <div class="property-box my-5 mx-0 flex justify-between w-full">
+        <div class="property-image h-[300px] w-[500px]">
+          <img class="h-full w-full rounded-md" src="images/land plot2.jpeg" alt="">
         </div>
-        <div class="property-details">We have plots of land which are mainly located in the rural areas and the remote regions of the country. These plots of land are mainly large in size. Some are located in rainy areas and most of them are more expensive, as valued by their owners while others are located in dry areas and most of them tend to be less expensive or even affordable in the end. To see more about these types of properties, click the link below.
-          <Link :href="route('client.upcountry')" class="btn">see more</Link>
+        <div class="property-details w-[600px]">We have plots of land which are mainly located in the rural areas and the remote regions of the country. These plots of land are mainly large in size. Some are located in rainy areas and most of them are more expensive, as valued by their owners while others are located in dry areas and most of them tend to be less expensive or even affordable in the end. To see more about these types of properties, click the link below.
+          <Link class="rounded-3xl border-none outline-none bg-[#2DE19D] py-3 px-6 text-center text-base capitalize text-black cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#15f49f] block w-36 my-5 mx-0" :href="route('client.upcountry')">see more</Link>
         </div>
       </div>
     </div>
     <hr>
-    <div class="home-property-box">
-      <div class="home-property-box-title"><span>Houses </span>on sale</div>
-      <div class="property-box">
-        <div class="property-image">
-          <img src="images/house.jpg" alt="">
+    <div class="home-property-box my-10 mx-0">
+      <div class="home-property-box-title text-lg font-semibold"><span class="text-[#2DE19D]">Houses </span>on sale</div>
+      <div class="property-box my-5 mx-0 flex justify-between w-full">
+        <div class="property-image h-[300px] w-[500px]">
+          <img class="h-full w-full rounded-md" src="images/house.jpg" alt="">
         </div>
-        <div class="property-details">We have houses on sale. These houses come in the following forms: old houses which are well taken care of and  are of high market value, new houses which are fresh from construction or even many houses in an estate. The houses are mainly from the three cities of Kenya which are Nairobi, Mombasa, Nakuru and Kisumu. Neverthesless we still have houses from other smaller towns of Kenya thought they account for much lower percentage of the overall number of house properties. To see more about the house properties avaible, click the link below.
-          <Link :href="route('client.houses')" class="btn">see more</Link>
+        <div class="property-details w-[600px]">We have houses on sale. These houses come in the following forms: old houses which are well taken care of and  are of high market value, new houses which are fresh from construction or even many houses in an estate. The houses are mainly from the three cities of Kenya which are Nairobi, Mombasa, Nakuru and Kisumu. Neverthesless we still have houses from other smaller towns of Kenya thought they account for much lower percentage of the overall number of house properties. To see more about the house properties avaible, click the link below.
+          <Link class="rounded-3xl border-none outline-none bg-[#2DE19D] py-3 px-6 text-center text-base capitalize text-black cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#15f49f] block w-36 my-5 mx-0" :href="route('client.houses')">see more</Link>
         </div>
       </div>
     </div>

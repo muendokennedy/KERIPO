@@ -141,7 +141,7 @@ nav .links:hover{
 .home .home-property-box-title span{
   color: var(--primary);
 } */
-.home .home-property-box .property-box{
+/* .home .home-property-box .property-box{
   margin: 2rem 0;
   display: flex;
   justify-content: space-between;
@@ -162,7 +162,7 @@ nav .links:hover{
 .home .home-property-box .property-box .property-details a{
   width: 15rem;
   margin: 2rem 0;
-}
+} */
 /* The urban page */
 .urban .urban-title{
   font-size: 1.8rem;
@@ -450,7 +450,7 @@ td{
     transition: all .3s ease-in-out;
   }
 /* The footer styling */
-footer{
+/* footer{
   font-size: 1.4rem;
   background: var(--footer-background-color);
   padding: 4rem 5%;
@@ -500,7 +500,7 @@ footer .copyright-box{
 }
 footer .copyright-box span{
   color: var(--primary);
-}
+} */
 .edit-product{
     box-shadow: 10px 10px 30px 25px rgba(0,0,0,0.5);
     transform: scale(0);
