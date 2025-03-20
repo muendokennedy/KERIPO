@@ -164,7 +164,7 @@ nav .links:hover{
   margin: 2rem 0;
 } */
 /* The urban page */
-.urban .urban-title{
+/* .urban .urban-title{
   font-size: 1.8rem;
   padding: 2rem 0;
   font-weight: 600;
@@ -176,7 +176,7 @@ nav .links:hover{
 }
 .urban .urban-title span{
   color: var(--primary);
-}
+} */
 /* table{
   width: 100%;
   margin: 2rem 0;
@@ -192,7 +192,7 @@ th{
 td{
   padding: 1.5rem 1.6rem;
 } */
-.urban .call-to-action{
+/* .urban .call-to-action{
   font-size: 1.8rem;
   padding: 2rem 0;
   font-weight: 600;
@@ -202,7 +202,7 @@ td{
   padding-top: 1rem;
   padding-bottom: 1rem;
   width: 30rem;
-}
+} */
 /* The styling of the contact page */
 .contact .contact-title{
   font-size: 1.8rem;

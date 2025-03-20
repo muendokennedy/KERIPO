@@ -42,6 +42,6 @@ import { Link } from '@inertiajs/vue3'
         </div>
       </div>
       <hr>
-      <div class="copyright-box text-center pt-14">This is the offficial site of <span class="text-[#2DE19D]">Kenya real estate inventory system</span>| kenyarealestate@gmail.com | All Rights Reserved</div>
+      <div class="copyright-box text-center pt-14">This is the official site of <span class="text-[#2DE19D]">Kenya real estate inventory system</span>| kenyarealestate@gmail.com | All Rights Reserved</div>
     </footer>
 </template>
