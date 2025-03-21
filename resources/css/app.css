@@ -202,9 +202,9 @@ td{
   padding-top: 1rem;
   padding-bottom: 1rem;
   width: 30rem;
-} */
+}
 /* The styling of the contact page */
-.contact .contact-title{
+/* .contact .contact-title{
   font-size: 1.8rem;
   padding: 2rem 0;
   font-weight: 600;
@@ -235,17 +235,18 @@ td{
   width: 45%;
   display: block;
   margin: .5rem 0;
-}
-.contact .contact-form .form-row .form-input input,
+} */
+/* .contact .contact-form .form-row .form-input input,
 .contact .contact-form .form-row .form-input select{
   padding: 1rem .5rem;
   outline: none;
   border: .2rem solid var(--form-input-border-bottom-color);
   width: 100%;
   background: var(--contact-form-background-color);
-}
-.contact .contact-form .form-row .form-input input:focus{
+} */
+/* .contact .contact-form .form-row .form-input input:focus{
   border-color: var(--primary);
+  outline: none;
   transition: all .3s ease-in-out;
 }
 .contact .contact-form .form-row .form-input label{
@@ -254,23 +255,23 @@ td{
 }
 .contact .contact-form .form-row .textarea{
   width: 100%;
-}
-.contact .contact-form .form-row .textarea textarea{
+} */
+/* .contact .contact-form .form-row .textarea textarea{
   resize: none;
   padding: 1rem .5rem;
   outline: none;
   border: .2rem solid var(--form-input-border-bottom-color);
   width: 100%;
   background: var(--contact-form-background-color);
-}
+} */
 
-.contact .contact-form .form-row .textarea textarea:focus{
+/* .contact .contact-form .form-row .textarea textarea:focus{
     border-color: var(--primary);
     transition: all .3s ease-in-out;
 }
 .contact .contact-form .form-row .textarea label{
   bottom: 90%;
-}
+} */
 /* .contact .contact-form .form-row .textarea textarea:focus ~ label,
 .contact .contact-form .form-row .textarea textarea:valid ~ label{
   transform: translateY(-7rem);
@@ -279,7 +280,7 @@ td{
   font-weight: 600;
   color: var(--primary);
 } */
-.contact .submit-btn .btn{
+/* .contact .submit-btn .btn{
   width: 20rem;
   font-weight: 600;
 }
@@ -298,7 +299,7 @@ td{
 }
 .contact .contact-form-title span{
   color: var(--primary);
-}
+} */
 /* The information page styling */
 .information .btn{
   margin: 2rem 0;
