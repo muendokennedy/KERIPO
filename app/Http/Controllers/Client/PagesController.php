@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Http\Controllers\Controller;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PagesController extends Controller
 {
@@ -40,5 +41,14 @@ class PagesController extends Controller
     public function Conditions()
     {
         return Inertia::render('Client/Conditions');
+    }
+
+    public function conditionsCheck(Request $request)
+    {
+        if(!$request->input('agree')){
+            return back()->with('success', 'You must accept the terms and conditions.');
+        }
+
+        return Inertia::render('Client/Information');
     }
 }

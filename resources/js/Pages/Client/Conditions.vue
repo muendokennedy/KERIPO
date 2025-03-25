@@ -1,7 +1,21 @@
 <script setup>
-import {Link } from '@inertiajs/vue3'
+import {Link, useForm } from '@inertiajs/vue3'
 import Header from '@/Components/Header.vue'
 import Footer from '@/Components/Footer.vue'
+import {ref } from 'vue'
+
+
+const form = useForm({
+    agree: ''
+})
+
+const submit = () => {
+
+    form.post(route('client.conditions.check'), {
+        onFinish: () => form.reset('agree'),
+        preserveScroll: true
+    })
+}
 
 
 </script>
@@ -22,13 +36,13 @@ import Footer from '@/Components/Footer.vue'
       </ul>
     </div>
     <div class="agree-title text-lg py-2 font-semibold">Do you agree with the terms and conditions?</div>
-    <form action="{{route('handleinfo')}}" method="POST">
+    <form @submit.prevent="submit">
       <div class="input-box flex gap-2 mr-10 items-center">
-      <input type="radio" name="agree" id="agree" value="1">
+      <input type="radio" v-model="form.agree" value="1" id="agree">
       <label for="agree">I AGREE</label>
       </div>
       <div class="input-box flex gap-2 mr-10 items-center">
-      <input type="radio" name="agree" id="agree2" value="0">
+      <input type="radio" v-model="form.agree" value="0" id="agree2">
       <label for="agree2">I DO NOT AGREE</label>
       </div>
       <button class="btn my-5 block w-[250px] rounded-3xl border-none outline-none bg-[#2DE19D] py-3 px-6 text-center text-base capitalize text-black cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#15f49f]">continue</button>

@@ -43,7 +43,8 @@ Route::middleware('prevent.back.history')->group(function () {
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-        Route::post('/conditions', [PagesController::class, 'Conditions'])->name('client.conditions');
+        Route::get('/conditions', [PagesController::class, 'Conditions'])->name('client.conditions');
+        Route::post('/conditions/check', [PagesController::class, 'conditionsCheck'])->name('client.conditions.check');
     });
 
     require __DIR__.'/auth.php';
