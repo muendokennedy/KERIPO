@@ -37,4 +37,8 @@ class PagesController extends Controller
     {
         return Inertia::render('Client/Contact');
     }
+    public function Conditions()
+    {
+        return Inertia::render('Client/Conditions');
+    }
 }

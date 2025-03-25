@@ -320,7 +320,7 @@ td{
   margin: 0 0 3rem 0;
 }
 /* Styling of the conditions page */
-.conditions .conditions-title{
+/* .conditions .conditions-title{
   font-size: 1.8rem;
   padding: 1rem 0;
   font-weight: 600;
@@ -370,7 +370,7 @@ td{
   margin: 2rem 0;
   display: block;
   width: 25rem;
-}
+} */
 .payment .payment-block .pay-column{
   margin-top: 2rem;
 }

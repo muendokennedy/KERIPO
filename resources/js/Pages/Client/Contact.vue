@@ -36,7 +36,7 @@ import { Link } from '@inertiajs/vue3'
         </div>
         <div class="form-row">
           <div class="form-input textarea w-full bg-[#E8E8E8] border-none">
-            <textarea name="message" class="text-base resize-none py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8]" id="message" cols="10" rows="5"></textarea>
+            <textarea name="message" class="text-base resize-none py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]" id="message" cols="10" rows="5"></textarea>
             <label for="message" class="text-base block my-2">Enter your message:</label>
           </div>
         </div>
