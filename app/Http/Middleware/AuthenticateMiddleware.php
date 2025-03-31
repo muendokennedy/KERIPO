@@ -21,10 +21,11 @@ class AuthenticateMiddleware
         foreach ($guards as $guard) {
             if (!Auth::guard($guard)->check()) {
 
-                if($guard === 'admin'){
-                    return redirect()->route('admin.login.show');
-                }
-                return redirect()->route('client.login.show');
+            session()->put('url.intended', $request->fullUrl());
+
+            return $guard === 'admin'
+                ? redirect()->route('admin.login.show')
+                : redirect()->route('client.login.show');
             }
         }
 
