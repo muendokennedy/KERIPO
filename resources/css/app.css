@@ -301,7 +301,7 @@ td{
   color: var(--primary);
 } */
 /* The information page styling */
-.information .btn{
+/* .information .btn{
   margin: 2rem 0;
 }
 .information .success-text, .information .error-text{
@@ -316,9 +316,9 @@ td{
   background-color: #f3a0a0;
 }
 /* Styling of the payment page */
-.payment .payment-welcome-text{
+/* .payment .payment-welcome-text{
   margin: 0 0 3rem 0;
-}
+}  */
 /* Styling of the conditions page */
 /* .conditions .conditions-title{
   font-size: 1.8rem;
@@ -375,7 +375,7 @@ td{
   margin-top: 2rem;
 }
 /* Creating a signup page */
-.signup .signup-title{
+/* .signup .signup-title{
     font-size: 1.8rem;
     padding: 2rem 0;
     font-weight: 600;
@@ -430,8 +430,8 @@ td{
   }
   .signup .signup-form .form-input input:focus{
     border-color: var(--primary);
-  }
-  .signup .submit-btn{
+  } */
+  /* .signup .submit-btn{
     margin: 2.5rem 0;
   }
   .signup .submit-btn .btn{
@@ -449,7 +449,7 @@ td{
   .signup .account-already a:hover{
     text-decoration: underline;
     transition: all .3s ease-in-out;
-  }
+  } */
 /* The footer styling */
 /* footer{
   font-size: 1.4rem;

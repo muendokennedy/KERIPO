@@ -21,69 +21,69 @@ const submit = () => {
 
 <template>
     <Header/>
-    <section class="information contact">
+    <section class="information py-2 px-[5%]">
                   <div class="success-text" id="success-text">
                       successfully
                   </div>
         <form action="">
-        <div class="contact-form-title"><span>Personal </span> Details</div>
-        <div class="contact-form">
-            <div class="form-row">
-              <div class="form-input">
-                  <label for="name">Enter Your Fullname:</label>
-                  <input type="text" name="name" id="name">
-                    <p class="text-[#ff0000] text-base sm:text-2xl py-2 w-full">The fullname is required</p>
+        <div class="contact-form-title text-lg py-5 font-semibold"><span class="text-[#2DE19D]">Personal </span> Details</div>
+        <div class="contact-form bg-[#E8E8E8] py-5 px-[2%]">
+            <div class="form-row flex justify-between my-1">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="name" class="text-base block my-2">Enter Your Fullname:</label>
+                  <input type="text" name="name" id="name" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
+                    <p class="text-[#ff0000] text-base  py-2 w-full">The full name is required</p>
               </div>
-              <div class="form-input">
-                  <label for="email">Enter Your Email:</label>
-                  <input type="email" name="email" id="email">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-input">
-                  <label for="birthdate">Enter Your Date of birth:</label>
-                  <input type="date" name="birthdate" id="birthdate">
-              </div>
-              <div class="form-input">
-                  <label for="mobilenumber">Enter Your Mobile Number:</label>
-                  <input type="number" name="mobilenumber" id="mobilenumber">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="email" class="text-base block my-2">Enter Your Email:</label>
+                  <input type="email" name="email" id="email" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-input">
-                  <label for="gender" class="select-label">Select Your Gender:</label>
-                  <select name="gender" id="gender">
+            <div class="form-row flex justify-between my-1">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="birthdate" class="text-base block my-2">Enter Your Date of birth:</label>
+                  <input type="date"  name="birthdate" id="birthdate" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
+              </div>
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="mobilenumber" class="text-base block my-2">Enter Your Mobile Number:</label>
+                  <input type="number" name="mobilenumber" id="mobilenumber" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
+              </div>
+            </div>
+            <div class="form-row flex justify-between my-1">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="gender" class="text-base block my-2">Select Your Gender:</label>
+                  <select name="gender" id="gender" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="other">Other</option>
                   </select>
               </div>
-              <div class="form-input">
-                  <label for="occupation">Enter Your Occupation:</label>
-                  <input type="text" name="occupation" id="occupation">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="occupation" class="text-base block my-2">Enter Your Occupation:</label>
+                  <input type="text" name="occupation" id="occupation" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
               </div>
             </div>
         </div>
-        <div class="contact-form-title"><span>Identity </span>Details</div>
-        <div class="contact-form">
-            <div class="form-row">
-              <div class="form-input">
-                  <label for="identitydocument" class="select-label">Select the ID type:</label>
-                  <select name="identitydocument" id="identitydocument">
+        <div class="contact-form-title text-lg py-5 font-semibold"><span class="text-[#2DE19D]">Identity </span>Details</div>
+        <div class="contact-form bg-[#E8E8E8] py-5 px-[2%]">
+            <div class="form-row flex justify-between my-1">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="identitydocument" class="text-base block my-2">Select the ID type:</label>
+                  <select name="identitydocument" id="identitydocument" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
                     <option value="nationalID">National ID</option>
                     <option value="passport">Passport</option>
                     <option value="drivinglicence">Driving licence</option>
                   </select>
               </div>
-              <div class="form-input">
-                  <label for="IDnumber">Enter the ID number:</label>
-                  <input type="number" name="IDnumber" id="IDnumber">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="IDnumber" class="text-base block my-2">Enter the ID number:</label>
+                  <input type="number" name="IDnumber" id="IDnumber" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-input">
-                  <label for="issueplace">Enter the county issued:</label>
-                  <select name="issueplace" id="issueplace">
+            <div class="form-row flex justify-between my-1">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="issueplace" class="text-base block my-2">Enter the county issued:</label>
+                  <select name="issueplace" id="issueplace" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
                     <option value="Mombasa">Mombasa</option>
                     <option value="Taita/Taveta">Taita/Taveta</option>
                     <option value="gGarissa">Garissa</option>
@@ -95,28 +95,28 @@ const submit = () => {
                     <option value="Nairobi City">Nairobi City</option>
                   </select>
               </div>
-              <div class="form-input">
-                  <label for="expirydate">Enter expiry date(optional):</label>
-                  <input type="date" name="expirydate" id="expirydate">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="expirydate" class="text-base block my-2">Enter expiry date(optional):</label>
+                  <input type="date" name="expirydate" id="expirydate" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-input">
-                  <label for="countryissued">Enter the country issued(if non native):</label>
-                  <input type="text" name="countryissued" id="countryissued">
+            <div class="form-row flex justify-between my-1">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="countryissued" class="text-base block my-2">Enter the country issued(if non native):</label>
+                  <input type="text" name="countryissued" id="countryissued" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
               </div>
-              <div class="form-input">
-                  <label for="issueauthority">Enter the issue authoriry:</label>
-                  <input type="text" name="issueauthority" id="issueauthority">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="issueauthority" class="text-base block my-2">Enter the issue authoriry:</label>
+                  <input type="text" name="issueauthority" id="issueauthority" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
               </div>
             </div>
         </div>
-        <div class="contact-form-title"><span>Location </span>information</div>
-        <div class="contact-form">
-            <div class="form-row">
-              <div class="form-input">
-                  <label for="county">Select the country of Residence:</label>
-                  <select name="county" id="county">
+        <div class="contact-form-title text-lg py-5 font-semibold"><span class="text-[#2DE19D]">Location </span>information</div>
+        <div class="contact-form bg-[#E8E8E8] py-5 px-[2%]">
+            <div class="form-row flex justify-between my-1">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="county" class="text-base block my-2">Select the country of Residence:</label>
+                  <select name="county" id="county" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
                     <option value="Mombasa">Mombasa</option>
                     <option value="Taita/Taveta">Taita/Taveta</option>
                     <option value="gGarissa">Garissa</option>
@@ -129,9 +129,9 @@ const submit = () => {
                   </select>
               </div>
 
-              <div class="form-input">
-                  <label for="subcounty">Select the sub-county:</label>
-                  <select name="subcounty" id="subcounty">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="subcounty" class="text-base block my-2">Select the sub-county:</label>
+                  <select name="subcounty" id="subcounty" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
                     <option value="Westlands">Westlands</option>
                     <option value="Dagoretti North">Dagoretti North</option>
                     <option value="Dagoretti South">Dagoretti South</option>
@@ -144,35 +144,35 @@ const submit = () => {
                   </select>
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-input">
-                  <label for="ward">Select the ward:</label>
-                  <select name="ward" id="ward">
+            <div class="form-row flex justify-between my-1">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="ward" class="text-base block my-2">Select the ward:</label>
+                  <select name="ward" id="ward" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
                     <option value="Nairobi West">Nairobi West</option>
                     <option value="Mugumoini">Mugumoini</option>
                     <option value="South C">South C</option>
                     <option value="Nyayo Highrise">Nyayo Highrise</option>
                   </select>
               </div>
-              <div class="form-input">
-                  <label for="zipcode">Enter the zip code:</label>
-                  <input type="text" name="zipcode" id="zipcode">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="zipcode" class="text-base block my-2">Enter the Postal code:</label>
+                  <input type="text" name="zipcode" id="zipcode" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-input">
-                  <label for="address">Enter Your Address:</label>
-                  <input type="text" name="address" id="address">
+            <div class="form-row flex justify-between my-1">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="address" class="text-base block my-2">Enter Your Address:</label>
+                  <input type="text" name="address" id="address" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
               </div>
-              <div class="form-input">
-                  <label for="town">Enter Your City or Town:</label>
-                  <input type="text" name="town" id="town">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="town" class="text-base block my-2">Enter Your City or Town:</label>
+                  <input type="text" name="town" id="town" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-input">
-                  <label for="propertyID">Enter the property ID of the property you want to acquire:</label>
-                  <input type="text" name="propertyID" id="propertyID">
+            <div class="form-row flex justify-between my-1">
+              <div class="form-input w-[45%] block my-1 bg-[#E8E8E8] border-none">
+                  <label for="propertyID" class="text-base block my-2">Enter the property ID of the property you want to acquire:</label>
+                  <input type="text" name="propertyID" id="propertyID" class="text-base py-2 px-1 outline-none border border-solid border-[#707070] w-full bg-[#E8E8E8] transition-all duration-300 ease-in-out focus:border-[#2DE19D]">
               </div>
             </div>
         </div>
@@ -190,7 +190,7 @@ const submit = () => {
             </div>
         </div> -->
         <div class="submit-btn">
-          <button class="btn">Submit</button>
+          <button class="my-7 w-[300px] block rounded-3xl border-none outline-none bg-[#2DE19D] py-3 px-6 text-center text-base capitalize text-black cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#15f49f]">Submit</button>
         </div>
       </form>
       <hr>

@@ -11,7 +11,7 @@ const form = useForm({
 
 const submit = () => {
 
-    form.post(route('client.conditions.check'), {
+    form.get(route('client.conditions.check'), {
         onFinish: () => form.reset('agree'),
         preserveScroll: true
     })

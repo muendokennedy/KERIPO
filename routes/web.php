@@ -44,7 +44,7 @@ Route::middleware('prevent.back.history')->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
         Route::get('/conditions', [PagesController::class, 'Conditions'])->name('client.conditions');
-        Route::post('/conditions/check', [PagesController::class, 'conditionsCheck'])->name('client.conditions.check');
+        Route::get('/conditions/check', [PagesController::class, 'conditionsCheck'])->name('client.conditions.check');
     });
 
     require __DIR__.'/auth.php';
