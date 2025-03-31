@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AdminPropertyController;
-use App\Http\Controllers\Client\PagesController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Client\PagesController;
+use App\Http\Controllers\Admin\AdminPropertyController;
+use App\Http\Controllers\Client\ClientInformationController;
 
 Route::middleware('prevent.back.history')->group(function () {
 
@@ -45,6 +46,7 @@ Route::middleware('prevent.back.history')->group(function () {
 
         Route::get('/conditions', [PagesController::class, 'Conditions'])->name('client.conditions');
         Route::get('/conditions/check', [PagesController::class, 'conditionsCheck'])->name('client.conditions.check');
+        Route::post('/client/information/store', [ClientInformationController::class, 'userInfo'])->name('client.information.store');
     });
 
     require __DIR__.'/auth.php';

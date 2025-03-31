@@ -39,15 +39,15 @@ const submit = () => {
     <div class="signup-container flex justify-center items-center">
       <div class="signup-form py-5 px-[2%] w-[500px] my-10 mx-auto bg-[#E8E8E8]">
         <div class="signup-form-title text-lg py-5 font-semibold text-center capitalize">login</div>
-        <form @submit.prevent="submit">
+        <form @submit.prevent="submit" autocomplete="off">
             <div class="form-input bg-[#E8E8E8] border-none w-full block my-2">
-              <label for="email" class="text-base block my-2">Enter email:</label>
+              <label  class="text-base block my-2">Enter email:</label>
               <input type="text" v-model="form.email" class="text-base py-2 px-1 outline-none border-2 border-solid border-[#707070] w-full bg-[#E8E8E8] focus:border-[#2DE19D] transition-all duration-300 ease-in-out">
             </div>
             <InputError class="p-3 mt-1" :message="form.errors.email" />
             <div class="form-input bg-[#E8E8E8] border-none w-full block my-2">
-              <label for="password" class="text-base block my-2">Enter your password:</label>
-              <input type="password" v-model="form.password" class="text-base py-2 px-1 outline-none border-2 border-solid border-[#707070] w-full bg-[#E8E8E8] focus:border-[#2DE19D] transition-all duration-300 ease-in-out" name="password" id="password">
+              <label  class="text-base block my-2">Enter your password:</label>
+              <input type="password" v-model="form.password" class="text-base py-2 px-1 outline-none border-2 border-solid border-[#707070] w-full bg-[#E8E8E8] focus:border-[#2DE19D] transition-all duration-300 ease-in-out">
             </div>
             <InputError class="p-3 mt-1" :message="form.errors.password" />
             <div class="submit-btn mt-5">

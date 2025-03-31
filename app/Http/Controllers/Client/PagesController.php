@@ -49,6 +49,9 @@ class PagesController extends Controller
             return back()->with('success', 'You must accept the terms and conditions.');
         }
 
-        return Inertia::render('Client/Information');
+        return Inertia::render('Client/Information', [
+            'name' => auth()->user()->name,
+            'email'=> auth()->user()->email
+        ]);
     }
 }
