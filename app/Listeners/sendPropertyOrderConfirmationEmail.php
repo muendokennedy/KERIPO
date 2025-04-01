@@ -2,11 +2,9 @@
 
 namespace App\Listeners;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use App\Events\ClientInformationSubmitted;
-use Illuminate\Support\Facades\Mail;
 use App\Mail\PropertyOrderCreated;
+use Illuminate\Support\Facades\Mail;
 
 class sendPropertyOrderConfirmationEmail
 {

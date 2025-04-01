@@ -37,7 +37,7 @@ class User extends Authenticatable
         'postalCode',
         'address',
         'town',
-        'propertyId'
+        'propertyId',
     ];
 
     /**

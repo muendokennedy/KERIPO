@@ -1,12 +1,12 @@
 <?php
 
-use Inertia\Inertia;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Client\PagesController;
 use App\Http\Controllers\Admin\AdminPropertyController;
 use App\Http\Controllers\Client\ClientInformationController;
+use App\Http\Controllers\Client\PagesController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 Route::middleware('prevent.back.history')->group(function () {
 

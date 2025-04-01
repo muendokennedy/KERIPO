@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Client;
 
-use Illuminate\Http\Request;
+use App\Events\ClientInformationSubmitted;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientInformationRequest;
-use App\Models\User;
 use App\Models\Property;
-use App\Events\ClientInformationSubmitted;
+use App\Models\User;
 
 class ClientInformationController extends Controller
 {
@@ -43,7 +42,7 @@ class ClientInformationController extends Controller
         $property = Property::where('propertyId', $user->propertyId)->first();
 
         $property->update([
-            'acquisitionStatus' => 'Pending Approval'
+            'acquisitionStatus' => 'Pending Approval',
         ]);
 
         // $order = new Order;
