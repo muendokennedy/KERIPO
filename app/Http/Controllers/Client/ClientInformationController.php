@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientInformationRequest;
+use App\Models\User;
+use App\Models\Property;
+use App\Events\ClientInformationSubmitted;
 
 class ClientInformationController extends Controller
 {
@@ -13,6 +16,46 @@ class ClientInformationController extends Controller
     {
         $clientInformation = $request->validated();
 
-        dd($clientInformation);
+        $user = User::where('id', auth('web')->id())->first();
+
+        $user->name = $clientInformation['fullName'];
+        $user->email = $clientInformation['email'];
+        $user->birthDate = $clientInformation['birthDate'];
+        $user->mobileNumber = $clientInformation['gender'];
+        $user->gender = $clientInformation['occupation'];
+        $user->occupation = $clientInformation['occupation'];
+        $user->identityDocument = $clientInformation['identityDocument'];
+        $user->idNumber = $clientInformation['idNumber'];
+        $user->issueLocation = $clientInformation['issueLocation'];
+        $user->expiryDate = $clientInformation['expiryDate'];
+        $user->countryIssued = $clientInformation['countryIssued'];
+        $user->issueAuthority = $clientInformation['issueAuthority'];
+        $user->county = $clientInformation['county'];
+        $user->subCounty = $clientInformation['subCounty'];
+        $user->ward = $clientInformation['ward'];
+        $user->postalCode = $clientInformation['postalCode'];
+        $user->address = $clientInformation['address'];
+        $user->town = $clientInformation['town'];
+        $user->propertyId = $clientInformation['propertyId'];
+
+        $user->save();
+
+        $property = Property::where('propertyId', $user->propertyId)->first();
+
+        $property->update([
+            'acquisitionStatus' => 'Pending Approval'
+        ]);
+
+        // $order = new Order;
+
+        // $order->user_id = $user->id;
+        // $order->propertyId = $user->propertyId;
+        // $order->status = 'Pending Approval';
+
+        // $order->save();
+
+        ClientInformationSubmitted::dispatch($user);
+
+        return back()->with('success', 'The property order information has been submitted successfully');
     }
 }

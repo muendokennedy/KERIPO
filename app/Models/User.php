@@ -21,6 +21,23 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'birthDate',
+        'mobileNumber',
+        'gender',
+        'occupation',
+        'identityDocument',
+        'idNumber',
+        'issueLocation',
+        'expiryDate',
+        'countryIssued',
+        'issueAuthority',
+        'county',
+        'subCounty',
+        'ward',
+        'postalCode',
+        'address',
+        'town',
+        'propertyId'
     ];
 
     /**
