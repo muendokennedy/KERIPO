@@ -1,10 +1,11 @@
 <x-mail::message>
-# Introduction
+# Property Acquistion information submitted
 
-The body of your message.
+This message was send to you to inform you that your information was
+received successfully. If you did not submit any information please ignore.
 
-<x-mail::button :url="''">
-Button Text
+<x-mail::button :url="url('/')">
+Go to homepage
 </x-mail::button>
 
 Thanks,<br>

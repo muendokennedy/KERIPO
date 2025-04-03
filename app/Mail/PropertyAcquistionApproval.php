@@ -3,10 +3,12 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\User;
 
 class PropertyAcquistionApproval extends Mailable
 {
@@ -15,7 +17,7 @@ class PropertyAcquistionApproval extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(protected User $user)
     {
         //
     }
@@ -36,7 +38,8 @@ class PropertyAcquistionApproval extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            markdown: 'mail.property.propertyacquisitionapprove',
+            with: ['user' => $this->user]
         );
     }
 
