@@ -43,7 +43,7 @@ class ClientInformationRequest extends FormRequest
             'postalCode' => 'required | string',
             'address' => 'required | string',
             'town' => 'required | string',
-            'propertyId' => ['required', 'numeric', Rule::in(Property::pluck('propertyId')->toArray())],
+            'propertyId' => ['required', 'string', Rule::in(Property::pluck('propertyId')->toArray())],
         ];
     }
 }

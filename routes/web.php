@@ -18,7 +18,7 @@ Route::middleware('prevent.back.history')->group(function () {
     Route::get('/contact', [PagesController::class, 'Contact'])->name('client.contact');
     Route::get('/notification', function(){
         return Inertia::render('Client/Notification');
-    });
+    })->name('client.notification');
 
     require __DIR__.'/adminauth.php';
 

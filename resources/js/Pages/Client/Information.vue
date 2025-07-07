@@ -2,15 +2,19 @@
 import {Link, useForm } from '@inertiajs/vue3'
 import Header from '@/Components/Header.vue'
 import Footer from '@/Components/Footer.vue'
-import {ref, watchEffect } from 'vue'
+import {ref, watchEffect, onMounted } from 'vue'
 import InputError from '@/Components/InputError.vue'
 
 const props = defineProps({
     name: String,
-    email: String
+    email: String,
+    success: {
+    type: String
+  }
 })
 
-console.log(props.name)
+const showSuccessNotification = ref(false)
+
 
 
 const form = useForm({
@@ -40,22 +44,38 @@ watchEffect(() => {
     form.fullName = props.name ?? '',
     form.email = props.email ?? ''
 })
-const submit = () => {
 
+onMounted(() => {
+    showSuccessNotification.value = true
+
+    setTimeout(() => {
+        showSuccessNotification.value = false
+    }, 8000)
+})
+
+const submit = () => {
     form.post(route('client.information.store'), {
-        preserveScroll: true
+        onSuccess: () => {
+            setTimeout(() => {
+            showSuccessNotification.value = false
+        }, 8000)
+        showSuccessNotification.value = false
+        }
     })
 }
-
 
 </script>
 
 <template>
     <Header/>
     <section class="information py-2 px-[5%]">
-                  <div class="success-text" id="success-text">
-                      successfully
-                  </div>
+        <Transition name="slide-fade">
+            <div v-show="showSuccessNotification && success" class="flash-message transition-all duration-300 flex gap-2 text-white bg-green-500 border-green-700 border rounded-md fixed right-20 top-20 w-[600px] p-4 z-10">
+                <CheckCircleIcon class="size-6 cursor-pointer"/>
+                <span>{{ success }}</span>
+                <XMarkIcon @click="showSuccessNotification = false" class="size-6 cursor-pointer absolute right-2"/>
+            </div>
+        </Transition>
         <form @submit.prevent="submit">
         <div class="contact-form-title text-lg py-5 font-semibold"><span class="text-[#2DE19D]">Personal </span> Details</div>
         <div class="contact-form bg-[#E8E8E8] py-5 px-[2%]">

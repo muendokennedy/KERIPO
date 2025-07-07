@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Events\ClientInformationSubmitted;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ClientInformationRequest;
-use App\Models\Property;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Property;
+use App\Http\Controllers\Controller;
+use App\Events\ClientInformationSubmitted;
+use App\Http\Requests\ClientInformationRequest;
 
 class ClientInformationController extends Controller
 {
@@ -53,6 +54,6 @@ class ClientInformationController extends Controller
 
         ClientInformationSubmitted::dispatch($user);
 
-        return back()->with('success', 'The property order information has been submitted successfully');
+        return redirect()->route('client.notification');
     }
 }
