@@ -16,6 +16,9 @@ Route::middleware('prevent.back.history')->group(function () {
     Route::get('/buildings/apartments', [PagesController::class, 'Apartments'])->name('client.apartments');
     Route::get('/buildings/houses', [PagesController::class, 'Houses'])->name('client.houses');
     Route::get('/contact', [PagesController::class, 'Contact'])->name('client.contact');
+    Route::get('/notification', function(){
+        return Inertia::render('Client/Notification');
+    });
 
     require __DIR__.'/adminauth.php';
 

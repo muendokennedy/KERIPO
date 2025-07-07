@@ -35,7 +35,7 @@ import { Link } from '@inertiajs/vue3'
     <hr>
     <div class="call-to-action text-lg py-5 font-semibold">Want to get yourself a piece of land?</div>
     <div class="call-to-action-details">Interested in acquistion of one or more of the above properties? Click the button below to submit your personal information that is required for the process to begin.</div>
-    <Link :href="route('client.urban')" class="my-7 w-[300px] block rounded-3xl border-none outline-none bg-[#2DE19D] py-3 px-6 text-center text-base capitalize text-black cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#15f49f]">Click here to begin the process</Link>
+    <Link as="button" :href="route('client.conditions')" class="my-7 w-[300px] block rounded-3xl border-none outline-none bg-[#2DE19D] py-3 px-6 text-center text-base capitalize text-black cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#15f49f]">Click here to begin the process</Link>
     <hr>
   </section>
   <Footer/>

@@ -21,11 +21,11 @@ class AdminPropertyController extends Controller
     {
         $propertyData = $request->validated();
 
-        $propertyId = mt_rand(100000000, 999999999);
+        $propertyId = mt_rand(10000, 99999);
 
-        // TODO come up with a function that does not product duplicates
-        if (Property::where('propertyId', $propertyId)) {
-            $propertyId = mt_rand(100000000, 999999999);
+
+        while(Property::where('propertyId', $propertyId)->exists()){
+            $propertyId = mt_rand(10000, 99999);
         }
 
         $property = Property::create([
