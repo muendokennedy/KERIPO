@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Property;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\PropertyResource;
 
 class PagesController extends Controller
 {
@@ -16,7 +18,11 @@ class PagesController extends Controller
 
     public function UrbanPlots()
     {
-        return Inertia::render('Client/Urban');
+        $urbanPlots = Property::where('category', 'Urban Plot')->latest()->get();
+
+        return Inertia::render('Client/Urban', [
+            'urbanPlots' => PropertyResource::collection($urbanPlots)
+        ]);
     }
 
     public function UpcountryPlots()
