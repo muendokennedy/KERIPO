@@ -2,6 +2,12 @@
 import Header from '@/Components/Header.vue'
 import Footer from '@/Components/Footer.vue'
 import { Link } from '@inertiajs/vue3'
+
+const props = defineProps({
+    houses: {
+        type: Array
+    }
+})
 </script>
 
 <template>
@@ -22,12 +28,12 @@ import { Link } from '@inertiajs/vue3'
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                  <td class="py-4 px-2">89343495</td>
-                  <td class="py-4 px-2">Ruiru</td>
-                  <td class="py-4 px-2">James Odhiambo</td>
-                  <td class="py-4 px-2">Ksh. 56,934</td>
-                  <td class="py-4 px-2">Sold</td>
+                <tr v-for="(house, index) in houses" :key="index">
+                  <td class="py-4 px-2">{{ house.propertyId }}</td>
+                  <td class="py-4 px-2">{{ house.location }}</td>
+                  <td class="py-4 px-2">{{ house.ownersName }}</td>
+                  <td class="py-4 px-2">{{ house.propertyValuation }}</td>
+                  <td class="py-4 px-2">{{ house.acquisitionStatus }}</td>
                 </tr>
                 </tbody>
                 </table>

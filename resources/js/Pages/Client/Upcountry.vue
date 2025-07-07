@@ -2,6 +2,13 @@
 import Header from '@/Components/Header.vue'
 import Footer from '@/Components/Footer.vue'
 import { Link } from '@inertiajs/vue3'
+
+const props = defineProps({
+
+    upcountryPlots: {
+        type: Array
+    }
+})
 </script>
 
 <template>
@@ -22,12 +29,12 @@ import { Link } from '@inertiajs/vue3'
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                  <td class="py-4 px-2">87757587</td>
-                  <td class="py-4 px-2">Kitui</td>
-                  <td class="py-4 px-2">Julius Malombe</td>
-                  <td class="py-4 px-2">Ksh.83,303</td>
-                  <td class="py-4 px-2">Sold</td>
+                <tr v-for="(upcountryPlot, index) in upcountryPlots" :key="index">
+                  <td class="py-4 px-2">{{ upcountryPlot.propertyId }}</td>
+                  <td class="py-4 px-2">{{ upcountryPlot.location }}</td>
+                  <td class="py-4 px-2">{{ upcountryPlot.ownersName }}</td>
+                  <td class="py-4 px-2">{{ upcountryPlot.propertyValuation }}</td>
+                  <td class="py-4 px-2">{{ upcountryPlot.acquisitionStatus }}</td>
                 </tr>
             </tbody>
             </table>

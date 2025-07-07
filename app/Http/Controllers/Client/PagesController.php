@@ -27,17 +27,30 @@ class PagesController extends Controller
 
     public function UpcountryPlots()
     {
-        return Inertia::render('Client/Upcountry');
+
+        $upcountryPlots = Property::where('category', 'Upcountry Plot')->latest()->get();
+
+        return Inertia::render('Client/Upcountry', [
+            'upcountryPlots' => PropertyResource::collection($upcountryPlots)
+        ]);
     }
 
     public function Apartments()
     {
-        return Inertia::render('Client/Apartments');
+        $apartments = Property::where('category', 'Apartment')->latest()->get();
+
+        return Inertia::render('Client/Apartments', [
+            'apartments' => PropertyResource::collection($apartments)
+        ]);
     }
 
     public function Houses()
     {
-        return Inertia::render('Client/Houses');
+        $houses = Property::where('category', 'House')->latest()->get();
+
+        return Inertia::render('Client/Houses', [
+            'houses' => PropertyResource::collection($houses)
+        ]);
     }
 
     public function Contact()
