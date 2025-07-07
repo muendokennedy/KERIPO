@@ -21,11 +21,11 @@ class AdminPropertyController extends Controller
     {
         $propertyData = $request->validated();
 
-        $propertyId = mt_rand(10000, 99999);
+        $propertyId = 'KRP-' . mt_rand(10000, 99999);
 
 
         while(Property::where('propertyId', $propertyId)->exists()){
-            $propertyId = mt_rand(10000, 99999);
+            $propertyId = 'KRP-' . mt_rand(10000, 99999);
         }
 
         $property = Property::create([
