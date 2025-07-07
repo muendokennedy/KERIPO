@@ -16,7 +16,7 @@ import AdminHeader from '@/Components/app/AdminHeader.vue'
                 <tr>
                   <th class="border-2 py-4 px-2">Customer</th>
                   <th class="border-2 py-4 px-2">Address</th>
-                  <th class="border-2 py-4 px-2">Cart</th>
+                  <th class="border-2 py-4 px-2">Details</th>
                   <th class="border-2 py-4 px-2">Email</th>
                   <th class="border-2 py-4 px-2">Contact</th>
                 </tr>

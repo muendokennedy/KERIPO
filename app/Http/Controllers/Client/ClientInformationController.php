@@ -45,13 +45,11 @@ class ClientInformationController extends Controller
             'acquisitionStatus' => 'Pending Approval',
         ]);
 
-        // $order = new Order;
-
-        // $order->user_id = $user->id;
-        // $order->propertyId = $user->propertyId;
-        // $order->status = 'Pending Approval';
-
-        // $order->save();
+        $order = Order::create([
+            'user_id' => $user->id,
+            'property_id' => $property->id,
+            'orderStatus' => 'active'
+        ]);
 
         ClientInformationSubmitted::dispatch($user);
 
