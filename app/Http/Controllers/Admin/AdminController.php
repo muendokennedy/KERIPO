@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Property;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PropertyResource;
+use App\Http\Resources\PropertyOrderResource;
 
 class AdminController extends Controller
 {
@@ -37,7 +38,7 @@ class AdminController extends Controller
         $orders = Order::with('user')->get();
 
         return Inertia::render('Admin/AdminOrders', [
-            'orders' => $orders
+            'orders' => PropertyOrderResource::collection($orders)
         ]);
     }
 
