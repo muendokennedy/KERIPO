@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AdminPropertyController;
-use App\Http\Controllers\Client\ClientInformationController;
-use App\Http\Controllers\Client\PagesController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Client\PagesController;
+use App\Http\Controllers\Admin\AdminPropertyController;
+use App\Http\Controllers\Admin\AdminPropertyOrderController;
+use App\Http\Controllers\Client\ClientInformationController;
 
 Route::middleware('prevent.back.history')->group(function () {
 
@@ -29,7 +30,11 @@ Route::middleware('prevent.back.history')->group(function () {
         Route::get('/orders', [AdminController::class, 'adminOrders'])->name('admin.orders');
         Route::get('/clientinfo', [AdminController::class, 'adminClientinfo'])->name('admin.clientinfo');
         Route::get('/settings', [AdminController::class, 'adminSettings'])->name('admin.settings');
-        // Admin auth routes
+
+
+        Route::get('/orderinfo/{order}', [AdminPropertyOrderController::class, 'orderInfo'])->name('admin.orderInfo');
+
+
 
         Route::get('/property/new/show', [AdminPropertyController::class, 'showNewPropertyForm'])->name('admin.property.new.show');
         Route::post('/property/store', [AdminPropertyController::class, 'storeProperty'])->name('admin.property.store');
