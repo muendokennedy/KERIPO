@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Inertia\Inertia;
+use App\Models\Order;
+use App\Models\Property;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PropertyResource;
-use App\Models\Property;
-use Inertia\Inertia;
 
 class AdminController extends Controller
 {
@@ -33,7 +34,11 @@ class AdminController extends Controller
 
     public function adminOrders()
     {
-        return Inertia::render('Admin/AdminOrders');
+        $orders = Order::with('user')->get();
+
+        return Inertia::render('Admin/AdminOrders', [
+            'orders' => $orders
+        ]);
     }
 
     public function adminClientinfo()

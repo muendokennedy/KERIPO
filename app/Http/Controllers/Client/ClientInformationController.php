@@ -21,8 +21,8 @@ class ClientInformationController extends Controller
         $user->name = $clientInformation['fullName'];
         $user->email = $clientInformation['email'];
         $user->birthDate = $clientInformation['birthDate'];
-        $user->mobileNumber = $clientInformation['gender'];
-        $user->gender = $clientInformation['occupation'];
+        $user->mobileNumber = $clientInformation['mobileNumber'];
+        $user->gender = $clientInformation['gender'];
         $user->occupation = $clientInformation['occupation'];
         $user->identityDocument = $clientInformation['identityDocument'];
         $user->idNumber = $clientInformation['idNumber'];
