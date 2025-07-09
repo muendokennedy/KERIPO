@@ -15,7 +15,7 @@ class AdminPropertyOrderController extends Controller
     public function orderInfo(string $order)
     {
 
-        $order = Order::with('user')->find($order);
+        $order = Order::with('user', 'property')->find($order);
 
             return Inertia::render('Admin/OrderInfo', [
             'order' => $order

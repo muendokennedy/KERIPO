@@ -18,7 +18,7 @@ const props = defineProps({
         <div class="recent-sales bg-white p-4 rounded-md">
           <div class="flex justify-between items-center py-4">
             <h2 class="text-[rgb(4,46,255)] font-semibold text-xl capitalize">Order Details</h2>
-            <Link as="button" :href="route('admin.orders')" class="text-white bg-gray-600 px-4 rounded-md py-2">
+            <Link as="button" :href="route('admin.orders')" class="text-white bg-[rgb(4,46,255)] px-4 rounded-md py-2">
               <i class="fa-solid fa-arrow-left pr-2"></i>Back to Orders
             </Link>
           </div>
@@ -63,7 +63,7 @@ const props = defineProps({
                     </tr>
                     <tr>
                       <td class="border-2 py-3 px-4 font-semibold bg-gray-50">Order Date</td>
-                      <td class="border-2 py-3 px-4">{{ new Date(order.created_at).toLocaleDateString() }}</td>
+                      <td class="border-2 py-3 px-4">{{ new Date(order.created_at).toLocaleDateString('en-US', {weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'}) }}</td>
                     </tr>
                     <tr>
                       <td class="border-2 py-3 px-4 font-semibold bg-gray-50">Status</td>
@@ -77,76 +77,46 @@ const props = defineProps({
                         </span>
                       </td>
                     </tr>
-                    <tr v-if="order.total_amount">
-                      <td class="border-2 py-3 px-4 font-semibold bg-gray-50">Total Amount</td>
-                      <td class="border-2 py-3 px-4 font-semibold text-lg">KSh {{ order.total_amount?.toLocaleString() }}</td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
             </div>
 
-            <!-- Order Items -->
-            <div class="mb-6" v-if="order.items && order.items.length">
-              <h3 class="text-[rgb(4,46,255)] font-semibold text-lg mb-4">Order Items</h3>
-              <div class="table-scroll overflow-x-auto">
-                <table class="w-full border-2">
-                  <thead>
-                    <tr>
-                      <th class="border-2 py-4 px-2 bg-gray-50">Item</th>
-                      <th class="border-2 py-4 px-2 bg-gray-50">Quantity</th>
-                      <th class="border-2 py-4 px-2 bg-gray-50">Price</th>
-                      <th class="border-2 py-4 px-2 bg-gray-50">Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(item, index) in order.items" :key="index">
-                      <td class="border-2 py-3 px-4">{{ item.name || item.product_name }}</td>
-                      <td class="border-2 py-3 px-4 text-center">{{ item.quantity }}</td>
-                      <td class="border-2 py-3 px-4 text-center">KSh {{ item.price?.toLocaleString() }}</td>
-                      <td class="border-2 py-3 px-4 text-center font-semibold">KSh {{ (item.quantity * item.price)?.toLocaleString() }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <!-- Property Information (if applicable) -->
             <div class="mb-6" v-if="order.property">
               <h3 class="text-[rgb(4,46,255)] font-semibold text-lg mb-4">Property Information</h3>
               <div class="table-scroll overflow-x-auto">
                 <table class="w-full border-2">
                   <tbody>
                     <tr>
-                      <td class="border-2 py-3 px-4 font-semibold bg-gray-50 w-1/4">Property Name</td>
-                      <td class="border-2 py-3 px-4">{{ order.property.name }}</td>
+                      <td class="border-2 py-3 px-4 font-semibold bg-gray-50 w-1/4">Property ID</td>
+                      <td class="border-2 py-3 px-4">{{ order.property.propertyId }}</td>
                     </tr>
                     <tr>
                       <td class="border-2 py-3 px-4 font-semibold bg-gray-50">Property Type</td>
-                      <td class="border-2 py-3 px-4">{{ order.property.type }}</td>
+                      <td class="border-2 py-3 px-4">{{ order.property.category }}</td>
                     </tr>
                     <tr>
                       <td class="border-2 py-3 px-4 font-semibold bg-gray-50">Location</td>
                       <td class="border-2 py-3 px-4">{{ order.property.location }}</td>
                     </tr>
-                    <tr v-if="order.property.price">
-                      <td class="border-2 py-3 px-4 font-semibold bg-gray-50">Property Price</td>
-                      <td class="border-2 py-3 px-4 font-semibold">KSh {{ order.property.price?.toLocaleString() }}</td>
+                    <tr>
+                      <td class="border-2 py-3 px-4 font-semibold bg-gray-50">Owner</td>
+                      <td class="border-2 py-3 px-4">{{ order.property.ownersName }}</td>
+                    </tr>
+                    <tr>
+                      <td class="border-2 py-3 px-4 font-semibold bg-gray-50">Property valuation</td>
+                      <td class="border-2 py-3 px-4">KES {{ order.property.propertyValuation?.toLocaleString() }}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-
-            <!-- Additional Notes -->
-            <div class="mb-6" v-if="order.notes">
+            <div class="mb-6">
               <h3 class="text-[rgb(4,46,255)] font-semibold text-lg mb-4">Additional Notes</h3>
               <div class="border-2 p-4 bg-gray-50 rounded-md">
-                <p>{{ order.notes }}</p>
+                <p>The client that placed this order has acquired properties through us before</p>
               </div>
             </div>
-
-            <!-- Order Management Actions -->
             <div class="mb-6">
               <h3 class="text-[rgb(4,46,255)] font-semibold text-lg mb-4">Order Management</h3>
               <div class="flex gap-4">
