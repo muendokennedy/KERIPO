@@ -86,7 +86,7 @@ const deleteProperty = (property) => {
             </div>
         <div class="recent-sales bg-white p-4 rounded-md">
           <h2 class="text-[rgb(4,46,255)] font-semibold text-lg md:text-xl py-4 capitalize">Properties</h2>
-          <div v-if="properties.length !== 0">
+          <div v-if="properties.length">
               <div class="table-container overflow-x-auto">
                 <table  class="w-[45rem] md:w-full border-2 my-4">
                   <thead>

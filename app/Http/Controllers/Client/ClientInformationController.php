@@ -46,10 +46,18 @@ class ClientInformationController extends Controller
             'acquisitionStatus' => 'Pending Approval',
         ]);
 
+        $orderId = 'KRPORDC-' . mt_rand(10000, 99999);
+
+
+        while(Order::where('orderId', $orderId)->exists()){
+            $orderId = 'KRPORDC-' . mt_rand(10000, 99999);
+        }
+
         $order = Order::create([
             'user_id' => $user->id,
             'property_id' => $property->id,
-            'orderStatus' => 'active'
+            'orderStatus' => 'pending',
+            'orderId' => $orderId
         ]);
 
         ClientInformationSubmitted::dispatch($user);
