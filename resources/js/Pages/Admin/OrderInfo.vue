@@ -1,6 +1,7 @@
 <script setup>
 import AdminSidebar from '@/Components/app/AdminSidebar.vue'
 import AdminHeader from '@/Components/app/AdminHeader.vue'
+import { XMarkIcon, ArrowLeftIcon } from '@heroicons/vue/24/solid'
 import { Link, useForm } from '@inertiajs/vue3'
 import { ref } from 'vue'
 
@@ -18,9 +19,8 @@ const rejectionReason = ref('')
 const messageContent = ref('')
 const isLoading = ref(false)
 
-const form = useForm({})
-
 const openApproveModal = () => {
+    hideFlashMessage()
     showApproveModal.value = true
 }
 
@@ -61,11 +61,14 @@ const hideFlashMessage = () => {
     }
 }
 
+const approveOrderForm = useForm({})
+
 const approveOrder = () => {
     isLoading.value = true
 
-    form.post(route('admin.order.approve', props.order.id), {
+    approveOrderForm.post(route('admin.order.approve', props.order.id), {
         onSuccess: () => {
+            hideFlashMessage()
             closeApproveModal()
             isLoading.value = false
             showFlashMessage('The order has been approved successfully', 'success')
@@ -73,11 +76,13 @@ const approveOrder = () => {
         onError: () => {
             isLoading.value = false
             showFlashMessage('Failed to approve order. Please try again', 'error')
-        }
+        },
+        preserveScroll: true
     })
 }
 
 const openRejectModal = () => {
+    hideFlashMessage()
     showRejectModal.value = true
     rejectionReason.value = ''
 }
@@ -87,6 +92,8 @@ const closeRejectModal = () => {
     rejectionReason.value = ''
 }
 
+const rejectOrderForm = useForm({rejectReason: ''})
+
 const rejectOrder = () => {
     if(!rejectionReason.value.trim()){
         showFlashMessage('Please provide a reason for rejection', 'warning')
@@ -95,13 +102,12 @@ const rejectOrder = () => {
 
     isLoading.value = true
 
-    form.post(route('admin.order.reject', props.order.id), {
+    rejectOrderForm.rejectReason = rejectionReason.value
 
-        data: {
-            rejectReason: rejectionReason.value
-        },
+    rejectOrderForm.post(route('admin.order.reject', props.order.id), {
 
         onSuccess: () => {
+            hideFlashMessage()
             closeRejectModal()
             isLoading.value = false
             showFlashMessage('The order has been rejected successfully', 'success')
@@ -109,11 +115,13 @@ const rejectOrder = () => {
         onError: () => {
             isLoading.value = false
             showFlashMessage('Failed to reject order please try again', 'error')
-        }
+        },
+        preserveScroll: true
     })
 }
 
 const openMessageModal = () => {
+    hideFlashMessage()
     showMessageModal.value = true
     messageContent.value = ''
 }
@@ -123,6 +131,8 @@ const closeMessageModal = () => {
     messageContent.value = ''
 }
 
+const sendMessageForm = useForm({clientMessage: ''})
+
 const sendMessage = () => {
     if(!messageContent.value.trim()){
        showFlashMessage('Please enter a message', 'warning')
@@ -131,17 +141,19 @@ const sendMessage = () => {
 
     isLoading.value =  true
 
-    form.post(route('admin.message.send', props.order.id), {
-        data: {
-            clientMessage: messageContent.value
-        },
+    sendMessageForm.clientMessage = messageContent.value
+
+    sendMessageForm.post(route('admin.order.message.send', props.order.id), {
         onSuccess: () => {
+            hideFlashMessage()
             closeMessageModal()
             isLoading.value = false
+            showFlashMessage('The message has been sent successfully', 'success')
         },
         onError: () => {
             isLoading.value = false
-        }
+        },
+        preserveScroll: true
     })
 }
 </script>
@@ -153,8 +165,9 @@ const sendMessage = () => {
         <div class="recent-sales bg-white p-4 rounded-md">
           <div class="flex justify-between items-center py-4">
             <h2 class="text-[rgb(4,46,255)] font-semibold text-xl capitalize">Order Details</h2>
-            <Link as="button" :href="route('admin.orders')" class="text-white bg-[rgb(4,46,255)] px-4 rounded-md py-2">
-              <i class="fa-solid fa-arrow-left pr-2"></i>Back to Orders
+            <Link as="button" :href="route('admin.orders')" class="text-white flex gap-2 bg-[rgb(4,46,255)] px-4 rounded-md py-2">
+              <ArrowLeftIcon class="size-6 cursor-pointer font-bold"/>
+              <span>Back to Orders</span>
             </Link>
           </div>
 
@@ -301,14 +314,14 @@ const sendMessage = () => {
             <p class="font-medium">{{ flashMessage.message }}</p>
           </div>
           <button @click="hideFlashMessage" class="ml-4 text-gray-400 hover:text-gray-600">
-            <i class="fa-solid fa-times"></i>
+            <XMarkIcon class="size-6 cursor-pointer font-bold"/>
           </button>
         </div>
       </div>
     </div>
       <!-- Approve Order Modal -->
     <div v-if="showApproveModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+      <div class="bg-white rounded-lg p-6 max-w-2xl w-full mx-4">
         <h3 class="text-lg font-semibold text-[rgb(4,46,255)] mb-4">Confirm Order Approval</h3>
         <p class="text-gray-600 mb-6">Are you sure you want to approve this order? This action cannot be undone.</p>
         <div class="flex justify-end gap-4">
@@ -332,7 +345,7 @@ const sendMessage = () => {
 
     <!-- Reject Order Modal -->
     <div v-if="showRejectModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+      <div class="bg-white rounded-lg p-6 max-w-2xl w-full mx-4">
         <h3 class="text-lg font-semibold text-[rgb(4,46,255)] mb-4">Reject Order</h3>
         <p class="text-gray-600 mb-4">Please provide a reason for rejecting this order:</p>
         <textarea
@@ -362,7 +375,7 @@ const sendMessage = () => {
 
     <!-- Send Message Modal -->
     <div v-if="showMessageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+      <div class="bg-white rounded-lg p-6 max-w-2xl w-full mx-4">
         <h3 class="text-lg font-semibold text-[rgb(4,46,255)] mb-4">Send Message</h3>
         <p class="text-gray-600 mb-4">Send a message to {{ order.user.name }}:</p>
         <textarea

@@ -33,6 +33,9 @@ Route::middleware('prevent.back.history')->group(function () {
 
 
         Route::get('/orderinfo/{order}', [AdminPropertyOrderController::class, 'orderInfo'])->name('admin.orderInfo');
+        Route::post('/order/approve/{order}', [AdminPropertyOrderController::class, 'approveOrder'])->name('admin.order.approve');
+        Route::post('/order/reject/{order}', [AdminPropertyOrderController::class, 'rejectOrder'])->name('admin.order.reject');
+        Route::post('/order/message/send/{order}', [AdminPropertyOrderController::class, 'sendMessage'])->name('admin.order.message.send');
 
 
 

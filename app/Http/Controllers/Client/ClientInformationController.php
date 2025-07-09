@@ -42,9 +42,9 @@ class ClientInformationController extends Controller
 
         $property = Property::where('propertyId', $user->propertyId)->first();
 
-        $property->update([
-            'acquisitionStatus' => 'Pending Approval',
-        ]);
+        // $property->update([
+        //     'acquisitionStatus' => 'Pending Approval',
+        // ]);
 
         $orderId = 'KRPORDC-' . mt_rand(10000, 99999);
 

@@ -34,7 +34,7 @@ class AdminPropertyController extends Controller
             'ownersName' => $propertyData['ownersName'],
             'location' => $propertyData['location'],
             'propertyValuation' => $propertyData['propertyValuation'],
-            'acquisitionStatus' => 'Not Acquired',
+            'acquisitionStatus' => 'Available',
         ]);
 
         return redirect()->route('admin.properties')->with('success', 'The property has been created successfully');

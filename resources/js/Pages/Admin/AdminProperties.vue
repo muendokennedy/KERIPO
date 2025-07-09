@@ -96,7 +96,7 @@ const deleteProperty = (property) => {
                       <th class="border-2 py-4 px-2">Location</th>
                       <th class="border-2 py-4 px-2">Owner Name</th>
                       <th class="border-2 py-4 px-2">Valuation</th>
-                      <th class="border-2 py-4 px-2">Acquisition status</th>
+                      <th class="border-2 py-4 px-2">Status</th>
                     </tr>
                   </thead>
                   <tbody>
