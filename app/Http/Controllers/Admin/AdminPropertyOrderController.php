@@ -50,6 +50,10 @@ class AdminPropertyOrderController extends Controller
         DB::transaction(function() use ($order, $request){
             Mail::to($order->user->email)->send(new PropertyOrderRejected($order, $request->rejectReason));
 
+            $order->property->acquisitionStatus = 'Available';
+
+            $order->property->save();
+
             $order->delete();
         });
 
