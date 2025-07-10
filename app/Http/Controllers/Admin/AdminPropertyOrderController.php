@@ -6,7 +6,9 @@ use Inertia\Inertia;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Mail\PropertyOrderRejected;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use App\Events\PropertyOrderApproved;
 use App\Http\Resources\PropertyOrderResource;
 
@@ -28,8 +30,6 @@ class AdminPropertyOrderController extends Controller
     {
         $order = Order::with('property')->find($order);
 
-        $order->orderStatus = 'approved';
-
         DB::transaction(function () use ($order){
             $order->orderStatus = 'approved';
             $order->save();
@@ -40,13 +40,20 @@ class AdminPropertyOrderController extends Controller
             }
             PropertyOrderApproved::dispatch($order);
         });
-
-
         return back();
     }
     public function rejectOrder(Request $request, string $order)
     {
-        dd($request);
+
+        $order = Order::find($order);
+
+        DB::transaction(function() use ($order, $request){
+            Mail::to($order->user->email)->send(new PropertyOrderRejected($order, $request->rejectReason));
+
+            $order->delete();
+        });
+
+
         return back();
     }
     public function sendMessage(Request $request, string $order)
