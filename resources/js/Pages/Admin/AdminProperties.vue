@@ -106,7 +106,12 @@ const deleteProperty = (property) => {
                       <td class="border-2 py-2 px-2 text-center">{{ property.location }}</td>
                       <td class="border-2 py-2 px-2 text-center">{{ property.ownersName }}</td>
                       <td class="border-2 py-2 px-2 text-center">{{ property.propertyValuation }}</td>
-                      <td class="border-2 py-2 px-2 text-center">{{ property.acquisitionStatus }}</td>
+                      <td class="border-2 py-2 px-2 text-center"><span
+                        :class="{
+                            'bg-green-100 text-green-800' : property.acquisitionStatus === 'Available',
+                            'bg-red-100 text-red-800' : property.acquisitionStatus === 'Unavailable',
+                            'bg-yellow-100 text-yellow-800': property.acquisitionStatus === 'Pending Approval'
+                        }" class="px-3 py-1 rounded-full text-sm font-medium">{{ property.acquisitionStatus }}</span></td>
                     </tr>
                   </tbody>
                 </table>

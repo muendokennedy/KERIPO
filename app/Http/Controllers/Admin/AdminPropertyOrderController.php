@@ -7,6 +7,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Events\PropertyOrderApproved;
 use App\Http\Resources\PropertyOrderResource;
 
 class AdminPropertyOrderController extends Controller
@@ -34,10 +35,12 @@ class AdminPropertyOrderController extends Controller
             $order->save();
 
             if($order->property){
-                $order->property->acquisitionStatus = 'unavailable';
+                $order->property->acquisitionStatus = 'Unavailable';
                 $order->property->save();
             }
+            PropertyOrderApproved::dispatch($order);
         });
+
 
         return back();
     }
