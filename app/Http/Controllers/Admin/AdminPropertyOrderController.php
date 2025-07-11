@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Inertia\Inertia;
 use App\Models\Order;
+use App\Mail\MessageClient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Mail\PropertyOrderRejected;
@@ -62,6 +63,11 @@ class AdminPropertyOrderController extends Controller
     }
     public function sendMessage(Request $request, string $order)
     {
+
+        $orderData = Order::find($order);
+
+        Mail::to($orderData->user->email)->send(new MessageClient($orderData, $request->clientMessage));
+
         return back();
     }
 }
