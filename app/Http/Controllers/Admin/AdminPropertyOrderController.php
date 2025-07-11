@@ -45,17 +45,20 @@ class AdminPropertyOrderController extends Controller
     }
     public function rejectOrder(Request $request, string $order)
     {
+        $validatedRejectReason = $request->validate([
+            'rejectReason' => 'required | string'
+        ]);
 
-        $order = Order::find($order);
+        $orderData = Order::find($order);
 
-        DB::transaction(function() use ($order, $request){
-            Mail::to($order->user->email)->send(new PropertyOrderRejected($order, $request->rejectReason));
+        DB::transaction(function() use ($orderData, $validatedRejectReason){
+            Mail::to($orderData->user->email)->send(new PropertyOrderRejected($orderData, $validatedRejectReason['rejectReason']));
 
-            $order->property->acquisitionStatus = 'Available';
+            $orderData->property->acquisitionStatus = 'Available';
 
-            $order->property->save();
+            $orderData->property->save();
 
-            $order->delete();
+            $orderData->delete();
         });
 
 
@@ -63,10 +66,13 @@ class AdminPropertyOrderController extends Controller
     }
     public function sendMessage(Request $request, string $order)
     {
+        $validatedMessage = $request->validate([
+            'clientMessage' => 'required | string'
+        ]);
 
         $orderData = Order::find($order);
 
-        Mail::to($orderData->user->email)->send(new MessageClient($orderData, $request->clientMessage));
+        Mail::to($orderData->user->email)->send(new MessageClient($orderData, $validatedMessage['clientMessage']));
 
         return back();
     }
