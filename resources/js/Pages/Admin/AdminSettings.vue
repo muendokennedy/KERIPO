@@ -2,6 +2,18 @@
 import AdminSidebar from '@/Components/app/AdminSidebar.vue'
 import AdminHeader from '@/Components/app/AdminHeader.vue'
 
+const props = defineProps({
+    admins: Array
+})
+
+const isPrimaryAdmin = (admin) => {
+    if(admin.email === 'kennedymuendo@gmail.com'){
+        return true
+    } else {
+        return false
+    }
+}
+
 </script>
 <template>
     <AdminSidebar/>
@@ -21,29 +33,14 @@ import AdminHeader from '@/Components/app/AdminHeader.vue'
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="border-2 py-2 px-2 text-center">Kennedy Muendo</td>
-                  <td class="border-2 py-2 px-2 text-center">kennedymuendo@gmail.com</td>
-                  <td class="border-2 py-2 px-2 text-center sm:px-4 md:translate-x-4 lg:translate-x-6"><img src="/images/man4.jpeg" alt="An Iphone12" class="h-16 w-16 rounded-full object-cover"></td>
-                  <td class="border-2 py-2 px-2 text-center"><button type="button" class="text-white bg-green-700 px-4 rounded-md py-2">Primary admin</button></td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-2 text-center">Kennedy Muendo</td>
-                  <td class="border-2 py-2 px-2 text-center">kennedymuendo@gmail.com</td>
-                  <td class="border-2 py-2 px-2 text-center sm:px-4 md:translate-x-4 lg:translate-x-6"><img src="/images/man4.jpeg" alt="An Iphone12" class="h-16 w-16 rounded-full object-cover"></td>
-                  <td class="border-2 py-2 px-2 text-center"><button type="button" class="text-white bg-[#042EFF] px-4 rounded-md py-2">Secondary admin</button></td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-2 text-center">Kennedy Muendo</td>
-                  <td class="border-2 py-2 px-2 text-center">kennedymuendo@gmail.com</td>
-                  <td class="border-2 py-2 px-2 text-center sm:px-4 md:translate-x-4 lg:translate-x-6"><img src="/images/man4.jpeg" alt="An Iphone12" class="h-16 w-16 rounded-full object-cover"></td>
-                  <td class="border-2 py-2 px-2 text-center"><button type="button" class="text-white bg-[#042EFF] px-4 rounded-md py-2">Secondary admin</button></td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-2 text-center">Kennedy Muendo</td>
-                  <td class="border-2 py-2 px-2 text-center">kennedymuendo@gmail.com</td>
-                  <td class="border-2 py-2 px-2 text-center sm:px-4 md:translate-x-4 lg:translate-x-6"><img src="/images/man4.jpeg" alt="An Iphone12" class="h-16 w-16 rounded-full object-cover"></td>
-                  <td class="border-2 py-2 px-2 text-center"><button type="button" class="text-white bg-[#042EFF] px-4 rounded-md py-2">Secondary admin</button></td>
+                <tr v-for="admin in admins" :key="admin.id">
+                  <td class="border-2 py-2 px-2 text-center">{{ admin.name }}</td>
+                  <td class="border-2 py-2 px-2 text-center">{{ admin.email }}</td>
+                  <td class="border-2 py-2 px-2 text-center sm:px-4 md:translate-x-4 lg:translate-x-6"><img :src="admin.avatar" :alt="admin.name" class="h-16 w-16 rounded-full object-cover"></td>
+                  <td class="border-2 py-2 px-2 text-center">
+                    <button v-if="isPrimaryAdmin(admin)" type="button" class="text-white bg-green-700 px-4 rounded-md py-2">Primary admin</button>
+                    <button v-else type="button" class="text-white bg-[#042EFF] px-4 rounded-md py-2">Secondary admin</button>
+                </td>
                 </tr>
               </tbody>
             </table>
@@ -61,30 +58,6 @@ import AdminHeader from '@/Components/app/AdminHeader.vue'
                     <div class="flex w-full justify-between">
                       <button type="button" class="bg-[#FFCF10] py-3 px-8 capitalize rounded-md">message <i class="fa-solid fa-envelope pl-2"></i></button>
                       <button type="button" class="bg-gray-300 py-3 px-8 capitalize rounded-md">remove <i class="fa-solid fa-times pl-2"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-6 w-1/2">
-                    <div class="flex w-full justify-between">
-                      <button type="button" class="bg-[#FFCF10] py-3 px-8 capitalize rounded-md">message <i class="fa-solid fa-envelope pl-2"></i></button>
-                      <button type="button" class="bg-[#FF4004] py-3 px-8 capitalize rounded-md">remove <i class="fa-solid fa-times pl-2"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-6 w-1/2">
-                    <div class="flex w-full justify-between">
-                      <button type="button" class="bg-[#FFCF10] py-3 px-8 capitalize rounded-md">message <i class="fa-solid fa-envelope pl-2"></i></button>
-                      <button type="button" class="bg-[#FF4004] py-3 px-8 capitalize rounded-md">remove <i class="fa-solid fa-times pl-2"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-6 w-1/2">
-                    <div class="flex w-full justify-between">
-                      <button type="button" class="bg-[#FFCF10] py-3 px-8 capitalize rounded-md">message <i class="fa-solid fa-envelope pl-2"></i></button>
-                      <button type="button" class="bg-[#FF4004] py-3 px-8 capitalize rounded-md">remove <i class="fa-solid fa-times pl-2"></i></button>
                     </div>
                   </td>
                 </tr>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Inertia\Inertia;
+use App\Models\Admin;
 use App\Models\Order;
 use App\Models\Property;
 use App\Http\Controllers\Controller;
@@ -54,6 +55,10 @@ class AdminController extends Controller
 
     public function adminSettings()
     {
-        return Inertia::render('Admin/AdminSettings');
+        $admins = Admin::all();
+
+        return Inertia::render('Admin/AdminSettings', [
+            'admins' => $admins
+        ]);
     }
 }
