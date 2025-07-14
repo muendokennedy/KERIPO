@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Client\PagesController;
 use App\Http\Controllers\Admin\AdminPropertyController;
+use App\Http\Controllers\Admin\AdminManagementController;
 use App\Http\Controllers\Admin\AdminPropertyOrderController;
 use App\Http\Controllers\Client\ClientInformationController;
 
@@ -44,6 +45,8 @@ Route::middleware('prevent.back.history')->group(function () {
         Route::get('/property/edit/{property}', [AdminPropertyController::class, 'showEditPropertyForm'])->name('admin.property.edit');
         Route::put('/property/update/{property}', [AdminPropertyController::class, 'updateProperty'])->name('admin.property.update');
         Route::delete('/property/delete/{property}', [AdminPropertyController::class, 'deleteProperty'])->name('admin.property.delete');
+
+        Route::post('/admin/new', [AdminManagementController::class, 'inviteNewAdmin'])->name('admin.new.admin.invite');
     });
 
     // Route::get('/dashboard', function () {

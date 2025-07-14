@@ -1,10 +1,25 @@
 <script setup>
 import AdminSidebar from '@/Components/app/AdminSidebar.vue'
 import AdminHeader from '@/Components/app/AdminHeader.vue'
+import { useForm } from '@inertiajs/vue3'
 
 const props = defineProps({
     admins: Array
 })
+
+const newAdminForm = useForm({
+    email: ''
+})
+
+const submit = () => {
+
+    newAdminForm.post(route('admin.new.admin.invite'), {
+        onSuccess: () => {
+            console.log('This thing went through')
+        }
+    })
+
+}
 
 const isPrimaryAdmin = (admin) => {
     if(admin.email === 'kennedymuendo@gmail.com'){
@@ -68,10 +83,10 @@ const isPrimaryAdmin = (admin) => {
         <div class="new-admin bg-white p-4 rounded-md my-4">
           <h2 class="text-[rgb(4,46,255)] font-semibold text-base md:text-xl py-4 capitalize">add new new admin</h2>
           <div class="new-admin-form">
-            <form action="#">
+            <form @submit.prevent="submit">
                 <div class="input-box">
                   <label for="email" class="block py-3">Enter the email address of the admin to be:</label>
-                  <input type="text" name="email" id="email" class="px-2 py-2 rounded-md outline-none border-2 w-full focus:border-[#042EFF] transition-all duration-300 ease-in-out" autofocus>
+                  <input type="text" v-model="newAdminForm.email" class="px-2 py-2 rounded-md outline-none border-2 w-full focus:border-[#042EFF] transition-all duration-300 ease-in-out" autofocus>
                 </div>
               <button type="submit" class="capitalize px-4 py-2 bg-[#042EFF] rounded-md text-white my-4">add new admin</button>
             </form>
