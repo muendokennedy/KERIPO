@@ -2,6 +2,12 @@
 import AdminSidebar from '@/Components/app/AdminSidebar.vue'
 import AdminHeader from '@/Components/app/AdminHeader.vue'
 
+const props = defineProps({
+    users: {
+        type: Array
+    }
+})
+
 </script>
 <template>
     <AdminSidebar/>
@@ -21,47 +27,11 @@ import AdminHeader from '@/Components/app/AdminHeader.vue'
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="border-2 py-2 px-2 text-center">Kennedy Muendo</td>
-                  <td class="border-2 py-2 px-2 text-center">kennedymuendo@gmail.com</td>
-                  <td class="border-2 py-2 px-2 text-center">Yes</td>
-                  <td class="border-2 py-2 px-2 text-center">0745079253</td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-2 text-center">Kennedy Muendo</td>
-                  <td class="border-2 py-2 px-2 text-center">kennedymuendo@gmail.com</td>
-                  <td class="border-2 py-2 px-2 text-center">Yes</td>
-                  <td class="border-2 py-2 px-2 text-center">0745079253</td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-2 text-center">Kennedy Muendo</td>
-                  <td class="border-2 py-2 px-2 text-center">kennedymuendo@gmail.com</td>
-                  <td class="border-2 py-2 px-2 text-center">Yes</td>
-                  <td class="border-2 py-2 px-2 text-center">0745079253</td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-2 text-center">Kennedy Muendo</td>
-                  <td class="border-2 py-2 px-2 text-center">kennedymuendo@gmail.com</td>
-                  <td class="border-2 py-2 px-2 text-center">Yes</td>
-                  <td class="border-2 py-2 px-2 text-center">0745079253</td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-2 text-center">Kennedy Muendo</td>
-                  <td class="border-2 py-2 px-2 text-center">kennedymuendo@gmail.com</td>
-                  <td class="border-2 py-2 px-2 text-center">Yes</td>
-                  <td class="border-2 py-2 px-2 text-center">0745079253</td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-2 text-center">Kennedy Muendo</td>
-                  <td class="border-2 py-2 px-2 text-center">kennedymuendo@gmail.com</td>
-                  <td class="border-2 py-2 px-2 text-center">Yes</td>
-                  <td class="border-2 py-2 px-2 text-center">0745079253</td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-2 text-center">Kennedy Muendo</td>
-                  <td class="border-2 py-2 px-2 text-center">kennedymuendo@gmail.com</td>
-                  <td class="border-2 py-2 px-2 text-center">Yes</td>
-                  <td class="border-2 py-2 px-2 text-center">0745079253</td>
+                <tr v-for="user in users" :key="user.id">
+                  <td class="border-2 py-2 px-2 text-center">{{ user.name }}</td>
+                  <td class="border-2 py-2 px-2 text-center">{{ user.email }}</td>
+                  <td class="border-2 py-2 px-2 text-center">{{ user?.propertyId ? 'Yes' : 'No' }}</td>
+                  <td class="border-2 py-2 px-2 text-center">{{ user?.mobileNumber || 'N/A' }}</td>
                 </tr>
               </tbody>
             </table>
@@ -74,55 +44,7 @@ import AdminHeader from '@/Components/app/AdminHeader.vue'
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="border-2 py-2 px-6 w-1/2">
-                    <div class="flex w-full justify-between">
-                      <button type="button" class="bg-[#FFCF10] py-3 px-8 capitalize rounded-md">message <i class="fa-solid fa-envelope pl-2"></i></button>
-                      <button type="button" class="bg-[#FF4004] py-3 px-8 capitalize rounded-md">suspend <i class="fa-solid fa-times pl-2"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-6 w-1/2">
-                    <div class="flex w-full justify-between">
-                      <button type="button" class="bg-[#FFCF10] py-3 px-8 capitalize rounded-md">message <i class="fa-solid fa-envelope pl-2"></i></button>
-                      <button type="button" class="bg-[#FF4004] py-3 px-8 capitalize rounded-md">suspend <i class="fa-solid fa-times pl-2"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-6 w-1/2">
-                    <div class="flex w-full justify-between">
-                      <button type="button" class="bg-[#FFCF10] py-3 px-8 capitalize rounded-md">message <i class="fa-solid fa-envelope pl-2"></i></button>
-                      <button type="button" class="bg-[#FF4004] py-3 px-8 capitalize rounded-md">suspend <i class="fa-solid fa-times pl-2"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-6 w-1/2">
-                    <div class="flex w-full justify-between">
-                      <button type="button" class="bg-[#FFCF10] py-3 px-8 capitalize rounded-md">message <i class="fa-solid fa-envelope pl-2"></i></button>
-                      <button type="button" class="bg-[#FF4004] py-3 px-8 capitalize rounded-md">suspend <i class="fa-solid fa-times pl-2"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-6 w-1/2">
-                    <div class="flex w-full justify-between">
-                      <button type="button" class="bg-[#FFCF10] py-3 px-8 capitalize rounded-md">message <i class="fa-solid fa-envelope pl-2"></i></button>
-                      <button type="button" class="bg-[#FF4004] py-3 px-8 capitalize rounded-md">suspend <i class="fa-solid fa-times pl-2"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="border-2 py-2 px-6 w-1/2">
-                    <div class="flex w-full justify-between">
-                      <button type="button" class="bg-[#FFCF10] py-3 px-8 capitalize rounded-md">message <i class="fa-solid fa-envelope pl-2"></i></button>
-                      <button type="button" class="bg-[#FF4004] py-3 px-8 capitalize rounded-md">suspend <i class="fa-solid fa-times pl-2"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
+                <tr v-for="user in users" :key="user.id">
                   <td class="border-2 py-2 px-6 w-1/2">
                     <div class="flex w-full justify-between">
                       <button type="button" class="bg-[#FFCF10] py-3 px-8 capitalize rounded-md">message <i class="fa-solid fa-envelope pl-2"></i></button>
