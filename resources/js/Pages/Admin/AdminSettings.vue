@@ -68,11 +68,14 @@ const isPrimaryAdmin = (admin) => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr v-for="admin in admins" :key="admin.id">
                   <td class="border-2 py-2 px-6 w-1/2">
                     <div class="flex w-full justify-between">
                       <button type="button" class="bg-[#FFCF10] py-3 px-8 capitalize rounded-md">message <i class="fa-solid fa-envelope pl-2"></i></button>
-                      <button type="button" class="bg-gray-300 py-3 px-8 capitalize rounded-md">remove <i class="fa-solid fa-times pl-2"></i></button>
+                      <div>
+                          <button v-if="isPrimaryAdmin(admin)" type="button" class="bg-gray-300 py-3 px-8 capitalize rounded-md">remove <i class="fa-solid fa-times pl-2"></i></button>
+                          <button v-else type="button" class="bg-[#FF4004] py-3 px-8 capitalize rounded-md">remove <i class="fa-solid fa-times pl-2"></i></button>
+                      </div>
                     </div>
                   </td>
                 </tr>
