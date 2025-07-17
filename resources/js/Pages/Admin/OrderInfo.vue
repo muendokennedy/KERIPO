@@ -1,7 +1,7 @@
 <script setup>
 import AdminSidebar from '@/Components/app/AdminSidebar.vue'
 import AdminHeader from '@/Components/app/AdminHeader.vue'
-import { XMarkIcon, ArrowLeftIcon } from '@heroicons/vue/24/solid'
+import { XMarkIcon, ArrowLeftIcon, CheckCircleIcon, ExclamationCircleIcon, ExclamationTriangleIcon } from '@heroicons/vue/24/solid'
 import { Link, useForm } from '@inertiajs/vue3'
 import { ref } from 'vue'
 
@@ -134,14 +134,19 @@ const closeMessageModal = () => {
 const sendMessageForm = useForm({clientMessage: ''})
 
 const sendMessage = () => {
-    if(!messageContent.value.trim()){
+
+    const rawMessage = messageContent.value.trim()
+
+    if(!rawMessage){
        showFlashMessage('Please enter a message', 'warning')
         return
     }
 
     isLoading.value =  true
 
-    sendMessageForm.clientMessage = messageContent.value
+    const parsedInput = !isNaN(rawMessage) && rawMessage !== '' ? Number(rawMessage) : rawMessage
+
+    sendMessageForm.clientMessage = parsedInput
 
     sendMessageForm.post(route('admin.order.message.send', props.order.id), {
         onSuccess: () => {
@@ -152,6 +157,7 @@ const sendMessage = () => {
         },
         onError: () => {
             isLoading.value = false
+            showFlashMessage(sendMessageForm.errors.clientMessage, 'error')
         },
         preserveScroll: true
     })
@@ -307,9 +313,9 @@ const sendMessage = () => {
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <div class="mr-3">
-              <i v-if="flashMessage.type === 'success'" class="fa-solid fa-check-circle text-green-500"></i>
-              <i v-if="flashMessage.type === 'error'" class="fa-solid fa-exclamation-circle text-red-500"></i>
-              <i v-if="flashMessage.type === 'warning'" class="fa-solid fa-exclamation-triangle text-yellow-500"></i>
+                <CheckCircleIcon v-if="flashMessage.type === 'success'" class="size-6  text-green-500"/>
+                <ExclamationCircleIcon v-if="flashMessage.type === 'error'" class="size-6  text-red-500"/>
+                <ExclamationTriangleIcon v-if="flashMessage.type === 'warning'" class="size-6  text-yellow-500"/>
             </div>
             <p class="font-medium">{{ flashMessage.message }}</p>
           </div>

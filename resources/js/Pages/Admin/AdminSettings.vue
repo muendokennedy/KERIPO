@@ -1,7 +1,7 @@
 <script setup>
 import AdminSidebar from '@/Components/app/AdminSidebar.vue'
 import AdminHeader from '@/Components/app/AdminHeader.vue'
-import { XMarkIcon, ArrowLeftIcon } from '@heroicons/vue/24/solid'
+import { XMarkIcon, ArrowLeftIcon, CheckCircleIcon, ExclamationCircleIcon, ExclamationTriangleIcon } from '@heroicons/vue/24/solid'
 import { useForm } from '@inertiajs/vue3'
 import { ref } from 'vue'
 
@@ -50,8 +50,13 @@ const submit = () => {
 
     newAdminForm.post(route('admin.new.admin.invite'), {
         onSuccess: () => {
-            showFlashMessage('The invitation has been sent successfully', 'success')
-        }
+            showFlashMessage(`The invitation has been sent successfully to ${newAdminForm.email}`, 'success')
+            newAdminForm.reset()
+        },
+        onError: () => {
+            showFlashMessage(newAdminForm.errors.email, 'error')
+        },
+        preserveScroll: true
     })
 
 }
@@ -141,9 +146,9 @@ const isPrimaryAdmin = (admin) => {
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <div class="mr-3">
-              <i v-if="flashMessage.type === 'success'" class="fa-solid fa-check-circle text-green-500"></i>
-              <i v-if="flashMessage.type === 'error'" class="fa-solid fa-exclamation-circle text-red-500"></i>
-              <i v-if="flashMessage.type === 'warning'" class="fa-solid fa-exclamation-triangle text-yellow-500"></i>
+                <CheckCircleIcon v-if="flashMessage.type === 'success'" class="size-6  text-green-500"/>
+                <ExclamationCircleIcon v-if="flashMessage.type === 'error'" class="size-6  text-red-500"/>
+                <ExclamationTriangleIcon v-if="flashMessage.type === 'warning'" class="size-6  text-yellow-500"/>
             </div>
             <p class="font-medium">{{ flashMessage.message }}</p>
           </div>
