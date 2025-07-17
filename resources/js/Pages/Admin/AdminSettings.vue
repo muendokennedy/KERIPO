@@ -1,11 +1,46 @@
 <script setup>
 import AdminSidebar from '@/Components/app/AdminSidebar.vue'
 import AdminHeader from '@/Components/app/AdminHeader.vue'
+import { XMarkIcon, ArrowLeftIcon } from '@heroicons/vue/24/solid'
 import { useForm } from '@inertiajs/vue3'
+import { ref } from 'vue'
 
 const props = defineProps({
     admins: Array
 })
+
+const flashMessage = ref({
+    show: false,
+    type: 'success',
+    message: ''
+})
+
+let flashTimeout = null
+
+const showFlashMessage = (message, type = 'success') => {
+    flashMessage.value = {
+        show: true,
+        type,
+        message
+    }
+
+    if(flashTimeout){
+        clearTimeout(flashTimeout)
+    }
+
+    flashTimeout = setTimeout(() => {
+        hideFlashMessage()
+    }, 8000)
+}
+
+const hideFlashMessage = () => {
+    flashMessage.value.show = false
+
+    if(flashTimeout){
+        clearTimeout(flashTimeout)
+        flashTimeout = null
+    }
+}
 
 const newAdminForm = useForm({
     email: ''
@@ -15,7 +50,7 @@ const submit = () => {
 
     newAdminForm.post(route('admin.new.admin.invite'), {
         onSuccess: () => {
-            console.log('This thing went through')
+            showFlashMessage('The invitation has been sent successfully', 'success')
         }
     })
 
@@ -97,4 +132,25 @@ const isPrimaryAdmin = (admin) => {
         </div>
       </main>
     </section>
+    <div v-if="flashMessage.show" class="fixed top-4 right-4 z-50 max-w-md w-full">
+      <div :class="{
+        'bg-green-100 border-green-400 text-green-700': flashMessage.type === 'success',
+        'bg-red-100 border-red-400 text-red-700': flashMessage.type === 'error',
+        'bg-yellow-100 border-yellow-400 text-yellow-700': flashMessage.type === 'warning'
+      }" class="border-l-4 p-4 rounded-md shadow-lg">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <div class="mr-3">
+              <i v-if="flashMessage.type === 'success'" class="fa-solid fa-check-circle text-green-500"></i>
+              <i v-if="flashMessage.type === 'error'" class="fa-solid fa-exclamation-circle text-red-500"></i>
+              <i v-if="flashMessage.type === 'warning'" class="fa-solid fa-exclamation-triangle text-yellow-500"></i>
+            </div>
+            <p class="font-medium">{{ flashMessage.message }}</p>
+          </div>
+          <button @click="hideFlashMessage" class="ml-4 text-gray-400 hover:text-gray-600">
+            <XMarkIcon class="size-6 cursor-pointer font-bold"/>
+          </button>
+        </div>
+      </div>
+    </div>
 </template>
