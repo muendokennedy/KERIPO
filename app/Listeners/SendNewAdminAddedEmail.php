@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Models\Admin;
+use App\Mail\MadeAdminEmail;
 use App\Events\NewAdminAdded;
 use App\Mail\NewAdminAddedEmail;
 use Illuminate\Support\Facades\Mail;
@@ -21,7 +22,12 @@ class SendNewAdminAddedEmail
         $admins = Admin::all();
 
         foreach($admins as $admin){
-            Mail::to($admin->email)->send(new NewAdminAddedEmail($event->admin));
+            if($admin->email === $event->admin->email){
+                Mail::to($event->admin->email)->send(new MadeAdminEmail($event->admin));
+            } else {
+                Mail::to($admin->email)->send(new NewAdminAddedEmail($event->admin));
+            }
         }
+
     }
 }
