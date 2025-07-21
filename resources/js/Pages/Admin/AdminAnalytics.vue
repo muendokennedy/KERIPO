@@ -32,13 +32,18 @@ const salesData = ref([
 ])
 
 const profitsData = ref([
-  { name: 'Computer Science', count: 580 },
-  { name: 'Civil Engineering', count: 425 },
-  { name: 'Electrical Engineering', count: 390 },
-  { name: 'Business Admin', count: 540 },
-  { name: 'Mechanical Engineering', count: 310 },
+  { name: 'Upcountry Plots', count: 580 },
+  { name: 'Urban Plots', count: 425 },
+  { name: 'Houses', count: 390 },
+  { name: 'Apartments', count: 540 },
   { name: 'Others', count: 241 }
 ])
+
+const activityChartData = ref({
+  signups: 2154,
+  acquisitions: 332,
+  pending: 100
+})
 
 const renderProfitsDistributionChart = () => {
   if(!profitsChart.value) return
@@ -165,12 +170,77 @@ const renderSignsChart = () => {
     })
 }
 
+const renderActivityChart = () => {
+  if(!activityChart.value) return
+
+  const ctx = activityChart.value.getContext('2d')
+
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Signups', 'Acquisitions', 'Pending'],
+      datasets: [{
+        data: [
+          activityChartData.value.signups,
+          activityChartData.value.acquisitions,
+          activityChartData.value.pending
+        ],
+        backgroundColor: [
+          'rgba(16, 185, 129, 0.8)',  
+          'rgba(239, 68, 68, 0.8)',    
+          'rgba(249, 168, 37, 0.8)'   
+        ],
+        borderColor: [
+          'rgba(16, 185, 129, 1)',
+          'rgba(239, 68, 68, 1)',
+          'rgba(249, 168, 37, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            // padding: 20,
+            boxWidth: 10,
+            boxHeight: 10,
+            margin: 20
+            // usePointStyle: true
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const label = context.label || ''
+              const value = context.raw || 0
+
+              console.log(context.dataset.data)
+              console.log(context.label)
+              console.log(context.raw)
+
+              const total = context.dataset.data.reduce((a, b) => a+b, 0)
+              const percentage = Math.round((value/total) * 100)
+
+              return `${label}: ${value} (${percentage}%)`
+            }
+          }
+        }
+      }
+    }
+  })
+}
+
 
 onMounted(() => {
     setTimeout(() => {
         renderSignsChart()
         renderSalesChart()
         renderProfitsDistributionChart()
+        renderActivityChart()
     }, 1000)
 })
 
@@ -183,8 +253,8 @@ onMounted(() => {
         <div class="canvas-container overflow-x-auto">
           <div class="recent-sales bg-white p-4 rounded-md w-[40rem] md:w-full">
             <h2 class="text-[rgb(4,46,255)] font-semibold text-lg sm:text-2xl py-4">Recent signups</h2>
-            <div class="h-64">
-                <canvas ref="signupsChart"></canvas>
+            <div>
+              <canvas ref="signupsChart" class="w-full"></canvas>
             </div>
           </div>
         </div>
@@ -204,9 +274,11 @@ onMounted(() => {
                 <canvas ref="profitsChart" class="w-full"></canvas>
               </div>
             </div>
-            <div class="recent-sales bg-white p-4 rounded-md w-[20rem] md:w-1/3">
+            <div class="recent-sales bg-white p-4 rounded-md w-[30rem] md:w-2/3">
               <h2 class="text-[#042EFF] font-semibold mb-6 text-base md:text-xl">Activity distribution</h2>
-              <canvas id="myChart4" class="w-full"></canvas>
+              <div>
+                <canvas ref="activityChart" class="w-full"></canvas>
+              </div>
           </div>
           </div>
         </div>
