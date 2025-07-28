@@ -8,7 +8,7 @@ import { HomeIcon, ChartBarIcon, InboxStackIcon, ListBulletIcon, CircleStackIcon
     <input type="checkbox" id="menu-bar" class="hidden">
     <div class="z-50 side-bar fixed left-0 min-h-screen w-[15rem] bg-[#042EFF] py-4 flex flex-col justify-between">
       <div class="sidebar-primary-box">
-        <h2 class="side-bar-title text-white font-bold text-2xl text-center capitalize my-4">KeriTech</h2>
+        <h2 class="side-bar-title text-white font-bold text-2xl text-center capitalize my-4">KREPortal</h2>
         <ul class="my-8 text-white px-6 space-y-6 capitalize">
           <li><Link :href="route('admin.dashboard')" class="flex items-center">
             <HomeIcon class="size-6 inline text-xl mr-3"/>

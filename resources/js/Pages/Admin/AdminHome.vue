@@ -87,7 +87,7 @@ import { ArrowUpIcon, ArrowDownIcon } from '@heroicons/vue/24/solid'
             </div>
           </div>
           <div class="recent-sales bg-white p-4 rounded-md w-full md:w-2/3">
-            <h2 class="text-[#042EFF] font-semibold text-2xl">Top selling product</h2>
+            <h2 class="text-[#042EFF] font-semibold text-2xl">Top selling Property</h2>
             <div class="table-container overflow-x-auto">
               <table class="w-[40rem] md:w-full">
                 <thead class="text-left">
