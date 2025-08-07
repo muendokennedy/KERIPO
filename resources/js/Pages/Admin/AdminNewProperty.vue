@@ -2,7 +2,7 @@
 import AdminSidebar from '@/Components/app/AdminSidebar.vue'
 import AdminHeader from '@/Components/app/AdminHeader.vue'
 import { useForm } from '@inertiajs/vue3'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const form = useForm({
     category: '',
@@ -25,6 +25,27 @@ const dragActive = ref(false)
 const fileInputRef = ref(null)
 const imageErrors = ref([])
 const showImageError = ref(false)
+
+const hasImageErrors = computed(() => {
+  return form.errors.images || 
+  form.errors['images.0'] ||
+  form.errors['images.1'] ||
+  form.errors['images.2'] ||
+  Object.keys(form.errors).some(key => key.startsWith('images.'))
+})
+
+const getImageSpecificErrors = computed(() => {
+  const errors = {}
+
+  Object.keys(form.errors).forEach(key => {
+    if(key.match(/^images\.(\d+)$/)){
+      const index = parseInt(key.split('.')[1])
+      errors[index] = form.errors[key]
+    }
+  })
+
+  return errors
+})
 
 const handleImageSelect = (event) => {
     const files = Array.from(event.target.files)
@@ -118,6 +139,8 @@ const processFiles = (files) => {
   if(form.errors.images){
     form.clearErrors('images')
   }
+
+  form.clearErrors(['images.0', 'images.1', 'images.2'])
 }
 const removeImage = (index) => {
     imageFiles.value.splice(index, 1)
@@ -163,6 +186,8 @@ const submit = () => {
         showImageError.value = true
         return
     }
+
+    console.log(form)
     
     // If we get here, we have exactly 3 images, proceed with form submission
     form.post(route('admin.property.store'))
@@ -322,9 +347,26 @@ const submit = () => {
                         </div>
                       </div>
 
-                      <!-- Error message for images -->
-                      <p v-if="form.errors.images" class="text-red-500 mt-2">{{ form.errors.images }}</p>
                     </div>
+
+                    <!-- Debug section  -->
+                     <div class="mt-4 p-3 bg-gray-100 rounded-md text-sm">
+                      <p class="font-bold mb-2">Debug - All form Errors</p>
+                      <pre class="whitespace-pre-wrap">{{ JSON.stringify(form.errors, null, 2)}}</pre>
+                     </div>
+
+                     <div v-if="hasImageErrors" class="mt-4">
+                      <div class="text-red-600 bg-red-50 border border-red-200 rounded-md p-3">
+                        <div v-if="form.errors.images" class="mb-2">
+                          <p>{{ form.errors.images }}</p>
+                        </div>
+
+                        <div v-for="(error, key) in getImageSpecificErrors" :key="key" class="mb-1">
+                          <p><strong class="px-2">Image {{ parseInt(key) + 1  }}:</strong>{{ error }}</p>
+                        </div>
+                      </div>
+                     </div>
+                    <!-- Error message for images -->
 
                     <button 
                       type="submit" 

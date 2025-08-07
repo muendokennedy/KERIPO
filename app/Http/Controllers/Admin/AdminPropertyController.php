@@ -19,6 +19,7 @@ class AdminPropertyController extends Controller
 
     public function storeProperty(StorePropertyRequest $request)
     {
+
         $propertyData = $request->validated();
 
         $propertyId = 'KRP-' . mt_rand(10000, 99999);
