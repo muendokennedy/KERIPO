@@ -16,6 +16,9 @@ class Property extends Model
         'location',
         'propertyValuation',
         'acquisitionStatus',
+        'primary_image_path',
+        'slug',
+        'created_by'
     ];
 
 

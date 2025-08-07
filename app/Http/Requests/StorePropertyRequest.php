@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\PropertyCategory;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorePropertyRequest extends FormRequest
@@ -22,12 +24,16 @@ class StorePropertyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category' => 'required | string | in:Urban Plot,Upcountry Plot,House,Apartment',
+            'category' => [
+                'required',
+                'string',
+                Rule::in(PropertyCategory::values())
+            ],
             'ownersName' => 'required | string',
             'location' => 'required | string',
             'propertyValuation' => 'required | numeric',
-            'images' => 'required | array | size:4',
-            'images.*' => 'required | image | mimes:jpeg, png, jpg, pdf | max:10240'
+            'images' => 'required | array | size:3',
+            'images.*' => 'required | image | mimes:jpeg, png, jpg | max:10240'
         ];
     }
 
