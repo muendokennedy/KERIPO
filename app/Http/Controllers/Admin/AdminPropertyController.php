@@ -102,19 +102,20 @@ class AdminPropertyController extends Controller
 
             return redirect()->route('admin.properties')->with('success', 'The property has been created successfully');
 
-        } catch (ValidationException $e){
-
-            DB::rollback();
-
-            throw $e;
-
         } catch (\Exception $e){
 
             DB::rollback();
 
             foreach($imagePaths as $path){
+
                 if(Storage::disk('public')->exists($path)){
                     Storage::disk('public')->delete($path);
+                }
+
+                $directory = dirname($path);
+
+                if(Storage::disk('public')->exists($directory) && empty(Storage::disk('public')->allFiles($directory))){
+                    Storage::disk('public')->deleteDirectory($directory);
                 }
             }
 
@@ -146,8 +147,39 @@ class AdminPropertyController extends Controller
 
     public function deleteProperty(Property $property)
     {
-        $property->delete();
+        DB::beginTransaction();
 
-        return back()->with('success', 'The property has been removed successfully');
+        try{
+
+            $imagePaths = $property->images->pluck('image_path')->toArray();
+
+            $property->images()->delete();
+
+            $property->delete();
+
+            foreach($imagePaths as $path){
+                if(Storage::disk('public')->exists($path)){
+                    Storage::disk('public')->delete($path);
+                }
+
+                $directory = dirname($path);
+
+                if(Storage::disk('public')->exists($directory) && empty(Storage::disk('public')->allFiles($directory))){
+                    Storage::disk('public')->deleteDirectory($directory);
+                }
+            }
+            DB::commit();
+    
+    
+            return back()->with('success', 'The property has been removed successfully');
+
+        } catch(\Exception $e){
+
+            throw $e;
+
+            DB::rollback();
+
+        }
+
     }
 }
