@@ -25,6 +25,8 @@ class PropertyResource extends JsonResource
             'updated_at' => $this->updated_at,
             'propertyValuation' => Number::currency($this->propertyValuation, in: 'KES'),
             'acquisitionStatus' => $this->acquisitionStatus,
+            'images' => $this->images,
+            'primaryImagePath' => $this->primary_image_path
         ];
     }
 }

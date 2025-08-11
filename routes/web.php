@@ -43,7 +43,7 @@ Route::middleware('prevent.back.history')->group(function () {
         Route::get('/property/new/show', [AdminPropertyController::class, 'showNewPropertyForm'])->name('admin.property.new.show');
         Route::post('/property/store', [AdminPropertyController::class, 'storeProperty'])->name('admin.property.store');
         Route::get('/property/edit/{property}', [AdminPropertyController::class, 'showEditPropertyForm'])->name('admin.property.edit');
-        Route::put('/property/update/{property}', [AdminPropertyController::class, 'updateProperty'])->name('admin.property.update');
+        Route::post('/property/update/{property}', [AdminPropertyController::class, 'updateProperty'])->name('admin.property.update');
         Route::delete('/property/delete/{property}', [AdminPropertyController::class, 'deleteProperty'])->name('admin.property.delete');
 
         Route::post('/admin/new', [AdminManagementController::class, 'inviteNewAdmin'])->name('admin.new.admin.invite');
