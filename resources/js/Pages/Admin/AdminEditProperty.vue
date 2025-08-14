@@ -303,9 +303,6 @@ const submit = () => {
             </Transition>
         <div class="recent-sales bg-white p-4 rounded-md">
           <h2 class="text-[rgb(4,46,255)] font-semibold text-lg md:text-xl py-4 capitalize">Edit existing property details</h2>
-          <pre>{{ property }}</pre>
-          <pre>{{ imagesToDelete }}</pre>
-          <pre>{{ form }}</pre>
           <form @submit.prevent="submit">
 
               <div class="form-row w-full flex flex-col md:flex-row justify-between">
