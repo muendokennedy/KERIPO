@@ -19,7 +19,8 @@ class Property extends Model
         'acquisitionStatus',
         'primary_image_path',
         'slug',
-        'created_by'
+        'created_by',
+        'updated_by'
     ];
 
 

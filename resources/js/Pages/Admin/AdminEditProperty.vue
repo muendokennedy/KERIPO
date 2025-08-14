@@ -17,7 +17,8 @@ const form = useForm({
     location: '',
     propertyValuation: '',
     images: [],
-    existingImages: []
+    existingImages: [],
+    imagesToDelete: []
 })
 
 // Image management state
@@ -81,6 +82,41 @@ onMounted(() => {
     }
 })
 
+// Add this computed property to your existing computed properties
+const getNewImageError = computed(() => {
+    return (index) => {
+        // Calculate the index position considering existing images
+        const adjustedIndex = existingImages.value.length + index;
+        
+        // Check for specific image errors
+        const errorKey = `images.${adjustedIndex}`;
+        if (form.errors[errorKey]) {
+            return form.errors[errorKey];
+        }
+        
+        // Also check for zero-based indexing if backend uses different indexing
+        const zeroBasedErrorKey = `images.${index}`;
+
+        if (form.errors[zeroBasedErrorKey]) {
+            return form.errors[zeroBasedErrorKey];
+        }
+
+
+        
+        return null;
+    }
+});
+
+// Method to check if a new image has an error
+const hasNewImageError = (index) => {
+    return getNewImageError.value(index) !== null;
+};
+
+// Method to get error message for a new image
+const getNewImageErrorMessage = (index) => {
+    return getNewImageError.value(index);
+};
+
 
 const handleImageSelect = (e) => {
     const files = Array.from(e.target.files)
@@ -98,7 +134,7 @@ const handleDragLeave = (e) => {
 }
 
 const handleDrop = (e) => {
-    e.preDefault()
+    e.preventDefault()
     dragActive.value = false
     const files = Array.from(e.dataTransfer.files)
     processFiles(files)
@@ -117,7 +153,7 @@ const processFiles = (files) => {
         imageErrors.value.push(`Invalid file type(s): ${invalidFiles.map(f => f.name).join(', ')}. Please select only image files (JPEG, PNG, GIF, WebP).`)
         showImageError.value = true
         return
-    }
+    } 
     
     // Filter only image files (double check)
     const filteredImages = files.filter(file => file.type.startsWith('image/'))
@@ -314,7 +350,7 @@ const submit = () => {
 
                       <!-- Backend validation errors for images -->
                       <div v-if="hasImageErrors" class="mt-4">
-                        <div class="text-red-600 bg-red-50 border border-red-200 rounded-md p-3">
+                        <div class="text-red-600 bg-red-50 border border-red-200 rounded-md p-3 mb-4">
                           <div class="flex items-center gap-2 mb-2">
                             <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
                               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
@@ -329,19 +365,9 @@ const submit = () => {
                           
                           <!-- Individual image errors -->
                           <div v-for="(error, key) in getImageSpecificErrors" :key="key" class="mb-1">
-                            <p><strong>Image {{ key + 1 }}:</strong> {{ error }}</p>
+                            <p>{{ error }}</p>
                           </div>
                           
-                          <!-- Other image-related errors -->
-                          <div v-if="form.errors['images.0']" class="mb-1">
-                            <p><strong>Image 1:</strong> {{ form.errors['images.0'] }}</p>
-                          </div>
-                          <div v-if="form.errors['images.1']" class="mb-1">
-                            <p><strong>Image 2:</strong> {{ form.errors['images.1'] }}</p>
-                          </div>
-                          <div v-if="form.errors['images.2']" class="mb-1">
-                            <p><strong>Image 3:</strong> {{ form.errors['images.2'] }}</p>
-                          </div>
                         </div>
                       </div>
 
@@ -413,39 +439,56 @@ const submit = () => {
                           </div>
 
                           <!-- New Images -->
-                          <div 
-                            v-for="(preview, index) in imagePreviews" 
-                            :key="`new-${preview.id}`"
-                            class="relative group"
-                          >
-                            <div class="aspect-square rounded-lg overflow-hidden border-2 border-blue-200">
-                              <img 
-                                :src="preview.src" 
-                                :alt="preview.name"
-                                class="w-full h-full object-cover"
+                           <div 
+                                v-for="(preview, index) in imagePreviews" 
+                                :key="`new-${preview.id}`"
+                                class="relative group"
                               >
-                            </div>
-                            
-                            <!-- New badge -->
-                            <div class="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
-                              New
-                            </div>
-                            
-                            <!-- Remove button -->
-                            <button
-                              type="button"
-                              @click="removeNewImage(index)"
-                              class="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                            >
-                              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                              </svg>
-                            </button>
-                            
-                            <!-- Image name -->
-                            <p class="mt-2 text-sm text-gray-600 truncate">{{ preview.name }}</p>
-                            <p class="text-xs text-blue-500">New Upload</p>
-                          </div>
+                                <div 
+                                  :class="[
+                                    'aspect-square rounded-lg overflow-hidden border-2 transition-colors duration-200',
+                                    hasNewImageError(index) ? 'border-red-500 border-2' : 'border-blue-200'
+                                  ]"
+                                >
+                                  <img 
+                                    :src="preview.src" 
+                                    :alt="preview.name"
+                                    class="w-full h-full object-cover"
+                                  >
+                                </div>
+                          
+                                
+                                <!-- New badge (only show if no error) -->
+                                <div 
+                                  class="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded"
+                                >
+                                  New
+                                </div>
+                                
+                                <!-- Remove button -->
+                                <button
+                                  type="button"
+                                  @click="removeNewImage(index)"
+                                  class="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                                >
+                                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                  </svg>
+                                </button>
+                                
+                                <!-- Image name -->
+                                <p class="mt-2 text-sm text-gray-600 truncate">{{ preview.name }}</p>
+                                <p 
+                                  :class="[
+                                    'text-xs',
+                                    hasNewImageError(index) ? 'text-red-500' : 'text-blue-500'
+                                  ]"
+                                >
+                                  {{ hasNewImageError(index) ? 'Upload Error' : 'New Upload' }}
+                                </p>
+                                
+                                <!-- Error message for this specific image -->
+                              </div>
                         </div>
                       </div>
                       
