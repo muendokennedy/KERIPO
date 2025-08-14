@@ -27,7 +27,12 @@ class AdminController extends Controller
 
     public function adminProperties()
     {
-        $properties = Property::latest()->get();
+
+        $properties = Property::latest()->with([
+            'order'=> function($query){
+                $query->with('user');
+            }
+        ])->get();
 
         return Inertia::render('Admin/AdminProperties', [
             'success' => session('success'),

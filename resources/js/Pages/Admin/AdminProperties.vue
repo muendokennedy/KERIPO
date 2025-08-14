@@ -36,6 +36,7 @@ const form = useForm({})
 const showSuccessNotification = ref(false)
 const showPropertyDeleteModal = ref(false)
 const showPropertyDetailsModal = ref(false)
+const showDeleteConfirmationInModal = ref(false)
 const propertyToDelete = ref(null)
 const selectedProperty = ref(null)
 const currentImageIndex = ref(0)
@@ -49,12 +50,14 @@ const showDetailsModal = (property) => {
     selectedProperty.value = property
     currentImageIndex.value = 0
     showPropertyDetailsModal.value = true
+    showDeleteConfirmationInModal.value = false 
 }
 
 const closeDetailsModal = () => {
     showPropertyDetailsModal.value = false
     selectedProperty.value = null
     currentImageIndex.value = 0
+    showDeleteConfirmationInModal.value = false
 }
 
 const confirmDelete = () => {
@@ -69,7 +72,15 @@ const closeDeleteModal = () => {
     propertyToDelete.value = null
 }
 
-const deletePropertyFromModal = () => {
+const showDeleteConfirmationFromModal = () => {
+    showDeleteConfirmationInModal.value = true
+}
+
+const hideDeleteConfirmationFromModal = () => {
+    showDeleteConfirmationInModal.value = false
+}
+
+const confirmDeleteFromModal = () => {
     if(selectedProperty.value) {
         deleteProperty(selectedProperty.value)
         closeDetailsModal()
@@ -179,6 +190,36 @@ const deleteProperty = (property) => {
                     </button>
                 </div>
 
+                <!-- Delete Confirmation Overlay (Inside Property Details Modal) -->
+                <div v-show="showDeleteConfirmationInModal" class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20">
+                    <div class="bg-white p-6 rounded-lg w-[28rem] mx-4 relative">
+                        <div class="flex gap-4 items-start mb-6">
+                            <ExclamationTriangleIcon class="size-10 text-red-500 flex-shrink-0 mt-1"/>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Delete Property</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    Are you sure you want to permanently delete property <strong>{{ selectedProperty?.propertyId }}</strong>? 
+                                    This action cannot be undone and all associated data will be lost.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex justify-end gap-3">
+                            <button 
+                                @click="hideDeleteConfirmationFromModal" 
+                                class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition-colors font-medium"
+                            >
+                                Cancel
+                            </button>
+                            <button 
+                                @click="confirmDeleteFromModal" 
+                                class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors font-medium"
+                            >
+                                Delete Property
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Modal Content -->
                 <div class="overflow-y-auto max-h-[calc(90vh-80px)]" v-if="selectedProperty">
                     <!-- Image Carousel -->
@@ -190,11 +231,11 @@ const deleteProperty = (property) => {
                                 class="w-full h-full object-cover"
                             >
                           </div>
+                          <!-- Navigation Arrows -->
                           <!-- Image Counter -->
                           <div class="absolute top-4 right-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
                               {{ currentImageIndex + 1 }} / {{ selectedProperty.images.length }}
                           </div>
-                                       <!-- Navigation Arrows -->
                             <button 
                                 v-if="selectedProperty.images.length > 1"
                                 @click="prevImage" 
@@ -337,11 +378,11 @@ const deleteProperty = (property) => {
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <p class="text-sm text-gray-600">Customer Name</p>
-                                    <p class="font-medium">{{ selectedProperty.order.customer_name }}</p>
+                                    <p class="font-medium">{{ selectedProperty.order.user.name }}</p>
                                 </div>
                                 <div>
                                     <p class="text-sm text-gray-600">Customer Email</p>
-                                    <p class="font-medium">{{ selectedProperty.order.customer_email }}</p>
+                                    <p class="font-medium">{{ selectedProperty.order.user.email }}</p>
                                 </div>
                                 <div>
                                     <p class="text-sm text-gray-600">Order Date</p>
@@ -350,7 +391,7 @@ const deleteProperty = (property) => {
                                 <div>
                                     <p class="text-sm text-gray-600">Order Status</p>
                                     <span class="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                        {{ selectedProperty.order.status }}
+                                        {{ selectedProperty.order.orderStatus }}
                                     </span>
                                 </div>
                             </div>
@@ -379,7 +420,7 @@ const deleteProperty = (property) => {
                             </Link>
                             
                             <button 
-                                @click="deletePropertyFromModal" 
+                                @click="showDeleteConfirmationFromModal" 
                                 class="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
                             >
                                 <TrashIcon class="size-5"/>
@@ -475,7 +516,7 @@ const deleteProperty = (property) => {
 }
 
 .slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 
 .slide-fade-enter-from,
