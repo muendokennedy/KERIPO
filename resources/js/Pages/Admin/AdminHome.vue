@@ -98,19 +98,19 @@ import { ArrowUpIcon, ArrowDownIcon } from '@heroicons/vue/24/solid'
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="py-2"><img src="/images/redmi note 12.png" alt="product" class="h-14 w-auto"></td>
+                    <td class="py-2"><img src="/images/house.jpg" alt="product" class="h-14 w-auto"></td>
                     <td class="py-2">House</td>
                   </tr>
                   <tr>
-                    <td class="py-2"><img src="/images/redmi note 12.png" alt="product" class="h-14 w-auto"></td>
+                    <td class="py-2"><img src="/images/house.jpg" alt="product" class="h-14 w-auto"></td>
                     <td class="py-2">Urban Plot</td>
                   </tr>
                   <tr>
-                    <td class="py-2"><img src="/images/redmi note 12.png" alt="product" class="h-14 w-auto"></td>
+                    <td class="py-2"><img src="/images/house.jpg" alt="product" class="h-14 w-auto"></td>
                     <td class="py-2">Upcountry Plot</td>
                   </tr>
                   <tr>
-                    <td class="py-2"><img src="/images/redmi note 12.png" alt="product" class="h-14 w-auto"></td>
+                    <td class="py-2"><img src="/images/house.jpg" alt="product" class="h-14 w-auto"></td>
                     <td class="py-2">Apartment</td>
                   </tr>
                 </tbody>

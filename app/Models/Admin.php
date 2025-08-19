@@ -46,4 +46,9 @@ class Admin extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function getAvatarAttribute($value)
+    {
+        return $value ? asset('storage/'. $value) : null;
+    }
 }

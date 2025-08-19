@@ -34,9 +34,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
 
-        // $file = $request->file('avatar');
 
-        // dd($file);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
@@ -54,7 +52,7 @@ class RegisteredUserController extends Controller
 
                     $avatar = $request->file('avatar');
 
-                    $avatarPath = $avatar->store('avatars/', 'public');
+                    $avatarPath = $avatar->store('avatars', 'public');
 
                 } catch (\Exception $e){
 
