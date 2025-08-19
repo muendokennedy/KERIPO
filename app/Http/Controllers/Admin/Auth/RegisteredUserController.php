@@ -33,18 +33,40 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
+        // $file = $request->file('avatar');
+
+        // dd($file);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'avatar' => 'sometimes|image|mimes:jpg, png, jpeg, webp | max:5120'
         ]);
 
         DB::transaction(function() use ($request) {
+
+            $avatarPath = null;
+
+            if($request->hasFile('avatar') && $request->file('avatar')->isValid()){
+                
+                try{
+
+                    $avatar = $request->file('avatar');
+
+                    $avatarPath = $avatar->store('avatars/', 'public');
+
+                } catch (\Exception $e){
+
+                    throw $e;
+                }
+            }
 
             $admin = Admin::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'avatar' => $avatarPath
             ]);
 
             Auth::guard('admin')->login($admin);
@@ -53,6 +75,6 @@ class RegisteredUserController extends Controller
         });
 
 
-        return redirect(route('admin.dashboard', absolute: false));
+        return redirect(route('admin.dashboard', absolute: false))->with('success', 'The admin account has been created successfully');
     }
 }
