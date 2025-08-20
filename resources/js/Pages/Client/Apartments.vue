@@ -23,8 +23,9 @@ const props = defineProps({
                 <th class="py-4 px-2 bg-[#2DE19D] text-left border-t border-solid border-black border-b">Property Id</th>
                 <th class="py-4 px-2 bg-[#2DE19D] text-left border-t border-solid border-black border-b">Location</th>
                 <th class="py-4 px-2 bg-[#2DE19D] text-left border-t border-solid border-black border-b">Owner</th>
-                <th class="py-4 px-2 bg-[#2DE19D] text-left border-t border-solid border-black border-b">price</th>
+                <th class="py-4 px-2 bg-[#2DE19D] text-left border-t border-solid border-black border-b">Price</th>
                 <th class="py-4 px-2 bg-[#2DE19D] text-left border-t border-solid border-black border-b">Status</th>
+                <th class="py-4 px-2 bg-[#2DE19D] text-left border-t border-solid border-black border-b">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +35,15 @@ const props = defineProps({
                   <td class="py-4 px-2">{{ apartment.ownersName }}</td>
                   <td class="py-4 px-2">{{ apartment.propertyValuation }}</td>
                   <td class="py-4 px-2">{{ apartment.acquisitionStatus }}</td>
+                  <td class="py-4 px-2">
+                    <Link 
+                      as="button" 
+                      :href="route('apartment.details', { id: apartment.propertyId })" 
+                      class="rounded-2xl border-none outline-none bg-[#2DE19D] py-2 px-4 text-sm capitalize text-black cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#15f49f]"
+                    >
+                      View Details
+                    </Link>
+                  </td>
                 </tr>
                 </tbody>
                 </table>
