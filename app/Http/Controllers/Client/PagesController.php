@@ -74,4 +74,11 @@ class PagesController extends Controller
             'email' => auth()->user()->email,
         ]);
     }
+
+    public function propertyDetails(Property $property)
+    {
+        return Inertia::render('Client/Propertydetails', [
+            'property' => new PropertyResource($property)
+        ]);
+    }
 }

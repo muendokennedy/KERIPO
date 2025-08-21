@@ -55,7 +55,7 @@ const copyToClipboard = async (propertyId) => {
                     <div class="flex justify-center gap-2">
                       <Link 
                         as="button" 
-                        :href="route('client.conditions', { id: house.propertyId })" 
+                        :href="route('client.property.details', house)" 
                         class="rounded-2xl border-none outline-none bg-[#2DE19D] py-2 px-4 text-sm capitalize text-black cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#15f49f]"
                       >
                         View Details
